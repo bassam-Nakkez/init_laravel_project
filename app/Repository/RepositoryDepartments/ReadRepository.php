@@ -65,7 +65,11 @@ class ReadRepository implements ReadRepositoryInterface
 
         if(isset($orderByColumns['price'])) $query->orderBy('price');
         $query->orderBy('recommendation', 'desc');
+
+
+        //return $query->paginate(10);
         return $query->get();
+
 
         }
 

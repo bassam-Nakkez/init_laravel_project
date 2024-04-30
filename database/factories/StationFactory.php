@@ -19,11 +19,11 @@ class StationFactory extends Factory
     {
       
         $cities = ["دمشق","حلب", "حمص" ,"طرطوس" ,"اللاذقية","حماة"];
-        $name   = ["كراج البولمان","كراج العباسيين", "السومرية" ,"شارع بغداد" ,"شارع الثورة","ساحة باب توما","ساحة السبع بحرات"];
+        $name   = ["كراج البولمان","كراج العباسيين", "السومرية" ,"شارع بغداد" ,"شارع الثورة","ساحة باب توما","ساحة السبع بحرات","جسر الرئيس"];
 
         return [
             'city' =>$cities[$this->faker->numberBetween(0,5)],
-            "name" => $name[$this->faker->numberBetween(0,6)],
+            "name" => $name[$this->faker->numberBetween(0,7)],
             "companyId"=>Company::inRandomOrder()->first()->companyId,
         ];
     }

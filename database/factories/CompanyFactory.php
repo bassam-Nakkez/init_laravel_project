@@ -28,6 +28,7 @@ class CompanyFactory extends Factory
          'القدموس'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ69AvjNbUANhBQtIRTM-J6qp2I3NTNlOWg5u8Dor38cw&s' ,
          'امان'=> 'https://mir-s3-cdn-cf.behance.net/projects/404/e5a860177412671.Y3JvcCwxMzM0LDEwNDMsMjksMzUw.jpg',
          'اجياد'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwJvKoRLbe7s_s2TgUYIuZJFAW_BI5WCD9zT2Pc0FUcA&s',
+         'محفوظ'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFdD89JDWmUolAnrfuyJ7LkjpEXrfMgqp4P-_2fteHKIcF10s0p1ByjtwZePKOuTxK3is&usqp=CAU',
          ];
 
 

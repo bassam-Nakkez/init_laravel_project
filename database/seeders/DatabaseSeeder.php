@@ -41,9 +41,9 @@ class DatabaseSeeder extends Seeder
         (new StationFactory())->count(20)->create();
         (new Series_Factory())->count(2)->create();
         (new Series_StationFactory())->count(10)->create();
-        (new TravelFactory())->count(300)->create();
+        (new TravelFactory())->count(700)->create();
         (new FeatureFactory())->count(5)->create();
-        (new Feature_travelFactory())->count(900)->create();
+        (new Feature_travelFactory())->count(1600)->create();
 
     //  (new AdminFactory())->count(5)->create();
     //  (new UserFactory())->count(25)->create();

@@ -26,7 +26,7 @@ class Series_StationFactory extends Factory
         return [
             "stationId"=>$station->stationId,
             "seriesId"=>Series::inRandomOrder()->first()->seriesId,
-            "ExpectedArrivalTime"=>$this->faker->time(),
+            "ExpectedArrivalTime"=>$this->faker->time('h:i A'),
             'city' =>$station->city,
             "name" =>$station->name,
         ];

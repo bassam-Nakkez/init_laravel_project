@@ -22,7 +22,7 @@ class TravelFactory extends Factory
     {
 
         $cities = ["دمشق","حلب", "حمص" ,"طرطوس" ,"اللاذقية","حماة"];
-        $period = ['morning', 'noon','afternoon','evening','night'];
+        $period = [ 'مساءً','عصراً','ظهراً','ليلاً','صباحاً'];
         $day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
         $number = $this->faker->numberBetween(0,1);
         $number2 = 0;
@@ -35,8 +35,8 @@ class TravelFactory extends Factory
             'programId'=>Program::inRandomOrder()->first()->programId,
             "from"=> $cities[ $number],
             "to"=>$cities[$number2],
-            'travelDate'=>$this->faker->dateTimeBetween('2024-04-10' ,'2024-5-1')->format('Y-m-d') ,
-            'timeToLeave'=>$this->faker->time(),
+            'travelDate'=>$this->faker->dateTimeBetween('2024-05-1' ,'2024-5-20')->format('Y-m-d') ,
+            'timeToLeave'=>$this->faker->time('h:i A'),
             "price"=>$this->faker->numberBetween(40000,90000 ),
             "numOfSeatsBooking"=>$this->faker->numberBetween(0,24),
             'numOfSeats'=>24,
@@ -45,7 +45,7 @@ class TravelFactory extends Factory
             'periodName'=> $period[$this->faker->numberBetween(0,4)],
             "notes"=>$this->faker->text(150),
             "available"=>$this->faker->boolean(80),
-            "isVIP"=>$this->faker->boolean(10),
+            "isVIP"=>true,
             "seriesId"=>Series::inRandomOrder()->first()->seriesId,
             "pullmanDescriptionId"=>PullmanDescription::inRandomOrder()->first()->pullmanDescriptionId,
             "companyId"=>Company::inRandomOrder()->first()->companyId,
