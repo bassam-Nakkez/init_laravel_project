@@ -39,7 +39,10 @@ class SearchAndFilterTravelLogic implements UseCase {
         $companies = ( !$this->input->getCompanies() == [] ) ? $this->input->getCompanies() : null; // OrWhere condition for every value in array
 
         // filter by VIP
-        $conditionsValues['isVIP']  =  $this->input->getIsVIP();
+        if($this->input->getIsVIP() != null)
+        {
+            $conditionsValues['isVIP']  =  $this->input->getIsVIP();
+        }
 
 
         // filter by station

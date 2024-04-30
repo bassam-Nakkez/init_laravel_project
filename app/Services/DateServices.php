@@ -19,14 +19,14 @@ class DateServices implements DateServicesInterface {
 
         $date1 = Carbon::createFromFormat($format , $firstDate);
         $date2 = Carbon::createFromFormat($format, $secondDate);
-    
+
             return $date1->gte($date2);
     }
 
 
     // get count days between tow date
     public function getDaysBetween($data1 , $data2 ,  $format ='Y-m-d' ){
-        
+
     $from = Carbon::createFromFormat($format , $data1);
     $to   = Carbon::createFromFormat($format , $data2);
 
@@ -39,5 +39,13 @@ class DateServices implements DateServicesInterface {
     public function getDayName( $date , $format = 'Y-m-d') : string {
             return Carbon::createFromFormat($format, $date)->format('l');
     }
+
     
+    function convertTo12Hour($time , string $am , string $pm ) {
+        $time12Hour = date("g:i A", strtotime($time));
+        $time12Hour = str_replace("AM", $am , $time12Hour);
+        $time12Hour = str_replace("PM", $pm , $time12Hour);
+        return $time12Hour;
+    }
+
 }
