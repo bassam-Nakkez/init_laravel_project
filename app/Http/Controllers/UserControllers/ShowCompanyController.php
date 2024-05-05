@@ -8,13 +8,12 @@ use App\Repository\BaseRepository;
 use App\Http\Controllers\Controller;
 use App\Adapters\presenters\JsonResponsePresenter;
 use App\BusinessLogic\UseCases\UserActor\ShowCompanyUseCase\ShowCompanyLogic;
-use App\BusinessLogic\UseCases\UserActor\SearchAndFilterTravelUseCase\SearchAndFilterTravelInput;
-use App\BusinessLogic\UseCases\UserActor\SearchAndFilterTravelUseCase\SearchAndFilterTravelLogic;
 
 class ShowCompanyController extends Controller
 {
     public function __invoke( Request  $request )
     {
+
 
         return $this->applyAspect(
 

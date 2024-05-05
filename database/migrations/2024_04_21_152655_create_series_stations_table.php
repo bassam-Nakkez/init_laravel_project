@@ -19,7 +19,7 @@ class CreateSeriesStationsTable extends Migration
             $table->foreignId('seriesId')->references('seriesId')->on('series')->cascadeOnDelete()->cascadeOnUpdate();            
             $table->string('city' , 60);
             $table->string('name',65);
-            $table->string('ExpectedArrivalTime');
+            $table->time('ExpectedArrivalTime');
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@ class CreateTravelsTable extends Migration
             $table->string('from' , 50);
             $table->string('to' , 50);
             $table->date('travelDate');
-            $table->string('timeToLeave');
+            $table->time('timeToLeave');
             $table->float('price')->unsigned();
             $table->integer('numOfSeats');
             $table->integer('numOfSeatsBooking')->default(0);
@@ -34,7 +34,7 @@ class CreateTravelsTable extends Migration
             $table->integer('recommendation')->default(0);
             $table->enum('day',['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']);
             $table->integer('DailySerialNumber')->nullable();
-            $table->enum('periodName',[ 'مساءً','عصراً','ظهراً','ليلاً','صباحاً','morning', 'noon','afternoon','evening','night'])->nullable();
+            $table->enum('periodName',['morning', 'noon','afternoon','evening','night'])->nullable();
             $table->timestamps();
 
             

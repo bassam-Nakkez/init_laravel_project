@@ -2,8 +2,6 @@
 namespace App\BusinessLogic\UseCases\UserActor\SearchAndFilterTravelUseCase;
 
 use DateTime;
-use DateTimeZone;
-use App\BusinessLogic\Core\Options\Settings;
 use App\BusinessLogic\Core\InternalInterface\RequestModel;
 
 class SearchAndFilterTravelInput implements RequestModel{
@@ -12,7 +10,7 @@ class SearchAndFilterTravelInput implements RequestModel{
     private  string $from;
     private  string $to ;
     private  ?int $stationId ;
-    private  $isVIP  ;
+    private  bool $isVIP = false  ;
     private  $date;
 
     public function __construct(array $data){
@@ -20,21 +18,16 @@ class SearchAndFilterTravelInput implements RequestModel{
         $this->from = $data ['from'];
         $this->to = $data['to'];
         $this->stationId = $data['stationId'];
-        $this->isVIP = $data['isVIP'];
+        $this->isVIP = ($data['isVIP'] != null )? $data['isVIP'] : false;
         $this->setDate($data['date']);
 }
 
 public function setDate($date){
-
-    $dateformat = new DateTime();
-    $dateformat->setTimezone(new DateTimeZone(Settings::$timeZone));
-    
    if($date != null){
-    $dateformat->setTimestamp($date);
+    $dateformat = new DateTime("@$date");
     $this->date = $dateformat->format('Y-m-d');
-    // $this->date =  date('Y-m-d ', $date);;
    }
-   else {  $this->date = $dateformat->format('Y-m-d');}
+   else {  $this->date= date('Y-m-d');}
 
 }
 

@@ -30,13 +30,8 @@ class RegisterUserController extends Controller
         ]
 
 
-
 )->sendResult();
 
-
 }
-
-
-
 
 }
