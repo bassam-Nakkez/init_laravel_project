@@ -14,11 +14,11 @@ enum EntityType : String {
     case PullmanDescription = "pullmanDescription";
     case TravelStation ='travelStation';
     case TravelFeature = 'travelFeature';
-    case SeriesStation = 'seriesStation';
     case Series = 'series';
     case Follow = 'follow';
     case Recommand = 'recommand';
     case Post = 'post';
+    case Reservation = 'reservation';
 
 
 }

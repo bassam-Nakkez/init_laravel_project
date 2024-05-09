@@ -3,23 +3,24 @@ namespace App\Factories;
 
 
 use App\Http\Models\City;
+use App\Http\Models\Post;
 use App\Http\Models\User;
 use App\Http\Models\Admin;
+use App\Http\Models\Follow;
 use App\Http\Models\Series;
 use App\Http\Models\Travel;
 use App\Http\Models\Company;
 use App\Http\Models\Feature;
 use App\Http\Models\Station;
 use App\Http\Models\Employee;
+use App\Http\Models\Recommand;
+use App\Http\Models\Reservation;
 use App\Http\Models\SeriesStation;
 use App\Http\Models\TravelStation;
 use App\Http\Models\TravelFeatures;
 use App\Http\Models\PullmanDescription;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Interfaces\EntityInterfaces\BaseEntity;
-use App\Http\Models\Follow;
-use App\Http\Models\Post;
-use App\Http\Models\Recommand;
 
 class FactoryModel
 {
@@ -42,11 +43,11 @@ class FactoryModel
             'pullmanDescription'    =>(new PullmanDescription($data)),
             'travelStation'         =>(new TravelStation($data)),
             'travelFeature'         =>(new TravelFeatures($data)),
-            'seriesStation'         =>(new SeriesStation($data)),
             'series'                =>(new Series($data)),
             'follow'                =>(new Follow($data)),
             'recommand'             =>(new Recommand($data)),
             'post'                  =>(new Post($data)),
+            'reservation'           =>(new Reservation($data)),
 
         ];
 

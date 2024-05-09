@@ -9,8 +9,8 @@ use App\BusinessLogic\Interfaces\EntityInterfaces\StationEntity;
 class Station extends Model implements StationEntity
 {
     use HasFactory;
-    
-    
+
+
     protected $table = 'stations';
 
     protected $primaryKey = 'stationId';
@@ -19,6 +19,8 @@ class Station extends Model implements StationEntity
         "name",
         "city",
         "companyId",
+        'seriesId',
+        'ExpectedArrivalTime',
     ];
 
     protected $hidden = [

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyControllers\AddEmployeeController;
 use App\Http\Controllers\CompanyControllers\CompanyLoginController;
 use App\Http\Controllers\CompanyControllers\CreateProgramController;
+use App\Http\Controllers\CompanyControllers\PostsManagement\CreatePostController;
+use App\Http\Controllers\CompanyControllers\SeriesManagement\CreateSeriesController;
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\AddStationController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\AddFeatureController;
 use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\CreateTravelController;
@@ -27,23 +29,28 @@ use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\Update
 Route::post('login',CompanyLoginController::class);
 
 
- //-------
 
+
+ //---------------------- Employees Management -----------------------
 
  Route::prefix('employee')->group(function () {
     Route::post('add',AddEmployeeController::class);
 });
 
+//---------------------- Programs Management -----------------------
 
  Route::prefix('program')->group(function () {
     Route::post('create',CreateProgramController::class);
 });
 
+//---------------------- Travels Management -----------------------
 
 Route::prefix('travel')->group(function () {
     Route::post('create',CreateTravelController::class);
 
 });
+
+//---------------------- Stations Management -----------------------
 
 Route::prefix('station')->group(function () {
     Route::post('add',AddStationController::class);
@@ -52,8 +59,25 @@ Route::prefix('station')->group(function () {
 });
 
 
+//---------------------- Features Management -----------------------
+
 Route::prefix('feature')->group(function () {
     Route::post('add',AddFeatureController::class);
     Route::post('delete',DeleteFeatureController::class);
     Route::post('update',UpdateFeatureController::class);
 });
+
+//---------------------- Series Management -----------------------
+
+Route::prefix('series')->group(function () {
+    Route::post('create',CreateSeriesController::class);
+
+});
+
+//---------------------- Posts Management -----------------------
+
+Route::prefix('post')->group(function () {
+    Route::post('create',CreatePostController::class);
+
+});
+

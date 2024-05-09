@@ -10,6 +10,7 @@ class SuccessMessage
     static $addedSuccessfully       = "تمت الاضافة بنجاح";
     static $DeletedSuccessfully       = "تم الحذف بنجاح";
     static $UpdatedSuccessfully       = "تم التعديل بنجاح";
+    static $createdSuccessfully       = "تم الانشاء بنجاح";
 
 
     

@@ -10,7 +10,7 @@ class Travel extends Model implements TravelEntity
 {
     use HasFactory;
 
-    
+
     protected $table = 'travels';
 
     protected $primaryKey = 'travelId';
@@ -33,7 +33,8 @@ class Travel extends Model implements TravelEntity
         "isVIP",
         "pullmanDescriptionId",
         "recommendation",
-        "seriesId"
+        "seriesId",
+        "seatNumbers"
     ];
 
 
@@ -56,7 +57,7 @@ class Travel extends Model implements TravelEntity
         return $this->hasOne(Series::class);
     }
 
-    
+
     /**
      * Get the pullmanDescription that owns the Travel
      *
@@ -67,13 +68,13 @@ class Travel extends Model implements TravelEntity
         return $this->belongsTo(PullmanDescription::class);
     }
 
-    
+
     public function stations()
     {
-        return $this->hasMany(SeriesStation::class ,'seriesId','seriesId');
+        return $this->hasMany(Station::class ,'seriesId','seriesId');
     }
 
-    
+
 
 
         /**
@@ -84,5 +85,15 @@ class Travel extends Model implements TravelEntity
     public function features()
     {
         return $this->hasManyThrough(Feature::class, TravelFeatures::class,'travelId','featureId','travelId','featureId');
+    }
+
+    /**
+     * Get the reservation associated with the Travel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function reservation()
+    {
+        return $this->hasOne(Reservation::class, 'reservationId', 'reservationId');
     }
 }

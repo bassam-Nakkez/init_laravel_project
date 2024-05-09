@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Http\Models\Series;
 use App\Http\Models\Company;
 use App\Http\Models\Station;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,6 +26,8 @@ class StationFactory extends Factory
             'city' =>$cities[$this->faker->numberBetween(0,5)],
             "name" => $name[$this->faker->numberBetween(0,6)],
             "companyId"=>Company::inRandomOrder()->first()->companyId,
+            "seriesId"=>Series::inRandomOrder()->first()->seriesId,
+            "ExpectedArrivalTime"=>$this->faker->time(),
         ];
     }
 }

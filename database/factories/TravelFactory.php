@@ -45,7 +45,7 @@ class TravelFactory extends Factory
             'periodName'=> $period[$this->faker->numberBetween(0,4)],
             "notes"=>$this->faker->text(150),
             "available"=>$this->faker->boolean(80),
-            "isVIP"=>$this->faker->boolean(10),
+            "isVIP"=>$this->faker->boolean(20),
             "seriesId"=>Series::inRandomOrder()->first()->seriesId,
             "pullmanDescriptionId"=>PullmanDescription::inRandomOrder()->first()->pullmanDescriptionId,
             "companyId"=>Company::inRandomOrder()->first()->companyId,
