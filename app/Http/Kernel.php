@@ -2,8 +2,8 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\AsspectMiddleware\HandelExpationMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\AsspectMiddleware\HandelExpationMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'changeHeaderName'=>\App\Http\Middleware\AuthorizationHeaderNameMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -65,4 +66,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    protected $middlewarePriority = [
+        'changeHeaderName'=>\App\Http\Middleware\AuthorizationHeaderNameMiddleware::class,
+    ];
 }
+

@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\TestEvent;
+use App\Events\bookingNotification;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetControllers\GetCitiesController;
 use App\Http\Controllers\GetControllers\GetSelectorFilterTravelController;
@@ -17,3 +19,9 @@ use App\Http\Controllers\GetControllers\GetSelectorFilterTravelController;
 Route::get('test',function(){return" Hi how are you ?" ;});
 Route::get('cities',GetCitiesController::class);
 Route::get("searchTravel/filters/selectors",GetSelectorFilterTravelController::class);
+
+Route::get('send',function(){
+
+    event(new TestEvent(" Hi bassam! ")) ;
+    return"success" ;
+});

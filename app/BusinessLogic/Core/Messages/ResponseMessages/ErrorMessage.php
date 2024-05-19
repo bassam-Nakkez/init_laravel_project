@@ -12,7 +12,7 @@ class ErrorMessage
     static $fildCreate      = "لم يتم انشاء العنصر الرجاء اعادة المحاولة";
     static $errorNotExists    = 'غير موجود';
     static $errorExists       = "موجود مسبقا";
-    static $AccountNotFound    = 'المعلومات المدخلة لا ترتبط بأي حساب';
+    static $AccountNotFound    = 'الرجاء التأكد من صحة المعلومات المدخلة و المحاولة مجدداً';
     static $ConnectionProblem    = 'يوجد مشكلة في الاتصال';
     static $errorOccurred       = 'حدث خطأ ما يرجى اعادة المحاولة';
     static $AgeIsNotAcceptable  = 'عمر الشخص يجب أن يكون أكبر من 15 عامًا';

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\UserControllers;
 
-use Illuminate\Http\Request;
 use App\Repository\BaseRepository;
 use App\Http\Controllers\Controller;
 use App\Adapters\presenters\JsonResponsePresenter;
@@ -15,7 +14,7 @@ class GetTravelMatrixController extends Controller
     public function __invoke(GetTravelMatrixRequest $showTravelDetailsRequest){
 
 
-        $data = ["userId" => auth()->user()->userId
+        $data = ["userId" =>auth()->user()->userId
                 , "travelId" => $showTravelDetailsRequest->travelId];
         return $this->applyAspect(
 

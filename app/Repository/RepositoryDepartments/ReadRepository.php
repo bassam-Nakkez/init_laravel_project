@@ -1,7 +1,7 @@
 <?php
 namespace App\Repository\RepositoryDepartments;
 
-use App\Http\Models\SeriesStation;
+use App\Http\Models\Station;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\ReadRepositoryInterface;
 
 class ReadRepository implements ReadRepositoryInterface
@@ -55,17 +55,13 @@ class ReadRepository implements ReadRepositoryInterface
             if(isset($conditionsValues['stationId'])){
                 $id = $conditionsValues['stationId'];
 
-                if( SeriesStation::select('seriesId')->where('stationId',$id)->exists())
+                if( Station::select('seriesId')->where('stationId',$id)->exists())
                 {
-                    $subQuery = SeriesStation::select('seriesId')->where('stationId',$id)->get();
+                    $subQuery = Station::select('seriesId')->where('stationId',$id)->get();
 
                 }
-                else{$subQuery = [0];}
+                else {  $subQuery = [0]; }
                 $query->whereIn('seriesId',$subQuery);
-                // $id = $conditionsValues['stationId'];
-                // $query->whereHas('stations',function($station) use($id) {
-                //     $station->where("stations.stationId", $id);
-                // }); //seriesId
             }
 
         $query->with(['company' => function ($q) {
@@ -75,7 +71,6 @@ class ReadRepository implements ReadRepositoryInterface
         if(isset($orderByColumns['price'])) $query->orderBy('price');
         $query->orderBy('recommendation', 'desc');
         return $query->get();
-
         }
 
 

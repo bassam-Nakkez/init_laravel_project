@@ -14,7 +14,7 @@ class SqlServices implements SqlServicesInterface {
     }
 
     public function commitTransaction(){
-        DB::commitTransaction();
+        DB::commit();
     }
 
     public function rollbackTransaction(){

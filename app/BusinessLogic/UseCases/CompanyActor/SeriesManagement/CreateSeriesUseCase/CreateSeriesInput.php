@@ -30,7 +30,7 @@ class CreateSeriesInput implements RequestModel{
     return $this->city;
     }
 
-public function getSeriesName() {
+    public function getSeriesName() {
      return $this->seriesName;
 }
 

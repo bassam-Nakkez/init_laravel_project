@@ -19,15 +19,16 @@ class CompanyFactory extends Factory
     public function definition()
     {
 
-        $companies = ['الامير','طروادة', 'القدموس' ,'امان' ,'اجياد'];
+        $companies = ['الامير','طروادة', 'القدموس' ,'امان' ,'اجياد' , 'الاولى للنقل'];
         
-        $companyName = $companies[ $this->faker->numberBetween(0,4) ] ; 
+        $companyName = $companies[ $this->faker->numberBetween(0,5) ] ; 
         
         $logo = ['الامير'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStMScsdrJl8hw--siY2VVR3uf277hMiyxu0S98sOsG-Q&s',
         'طروادة'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2DGDoUqVKzRD9n67_rJ3_lFbrQ8mF_kiEO5-86RhhfQ&s',
          'القدموس'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ69AvjNbUANhBQtIRTM-J6qp2I3NTNlOWg5u8Dor38cw&s' ,
          'امان'=> 'https://mir-s3-cdn-cf.behance.net/projects/404/e5a860177412671.Y3JvcCwxMzM0LDEwNDMsMjksMzUw.jpg',
          'اجياد'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwJvKoRLbe7s_s2TgUYIuZJFAW_BI5WCD9zT2Pc0FUcA&s',
+         'الاولى للنقل' => 'https://play-lh.googleusercontent.com/IdYBFXSQ-ejCD7lKpRflAVekTxfDtM2UbqW1WOtOnqPMunSa5zxER4nS9wktJ4PGspr5'
          ];
 
 

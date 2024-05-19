@@ -16,7 +16,6 @@ class CreateSeriesController extends Controller
     public function __invoke( Request  $request )
     {
 
-
         return $this->applyAspect(
 
         //--------------------Functional Service ------------------------------------

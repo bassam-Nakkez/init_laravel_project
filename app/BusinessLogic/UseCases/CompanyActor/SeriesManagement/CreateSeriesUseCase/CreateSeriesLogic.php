@@ -12,19 +12,19 @@ use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
 
 class CreateSeriesLogic implements UseCase {
 
-    
+
     public function __construct(
         //---------------------------------------------------------------------------------------
         private CreateSeriesInput $input,  /*| Pass Request To Service*/
         //---------------------------------------------------------------------------------------
-        private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork 
+        private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork
         private PresenterInterface $output,          // for present output to Views ---- Views
         private ServicesInterface $service           // frameWork services
     ){}
-    
-     
-    public function execute() : Result { 
-        
+
+
+    public function execute() : Result {
+
 
         // start transaction
         $this->service->SqlServices()->startTransaction();
@@ -38,32 +38,30 @@ class CreateSeriesLogic implements UseCase {
 
         if($series == null )
         $this->service->SqlServices()->rollbackTransaction();
-        return $this->output->sendFailed(null , ErrorMessage::$ConnectionProblem);
+       return $this->output->sendFailed(null , ErrorMessage::$ConnectionProblem);
 
-        $this->repository->buildRepositoryModel(EntityType::Station , []);
+       $this->repository->buildRepositoryModel(EntityType::Station , []);
 
         foreach($this->input->getStations() as $station ){
            
-            $stationRecord = [
-             "name"      => $station['StationName'], 
-             "city"      => $this->input->getCity(),
-             "companyId" =>$this->input->getCompanyId(),
-             'seriesId'=> $series->seriesId ,
-             'ExpectedArrivalTime' => $station['ExpectedArrivalTime'],  
-            ];
+            $result = $this->repository->createRepository()->create([
+                "name"      => $station['stationName'],
+                "city"      => $this->input->getCity(),
+                "companyId" =>$this->input->getCompanyId(),
+                'seriesId'  => $series->seriesId ,
+                'ExpectedArrivalTime' => $station['ExpectedArrivalTime'],
+               ]);
 
-            $station = $this->repository->createRepository()->create($stationRecord);
-
-            if($station == null )
+            if($result == null ){ 
             $this->service->SqlServices()->rollbackTransaction();
             return $this->output->sendFailed(null , ErrorMessage::$ConnectionProblem);
-    
         }
 
+        }
+        
         // commit transaction
         $this->service->SqlServices()->commitTransaction();
         return $this->output->sendSuccess([(new CreateSeriesOutput($series))->getDataAsObject()] , SuccessMessage::$createdSuccessfully);
 
     }
 }
-    

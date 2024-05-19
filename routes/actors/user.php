@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserControllers\UserLoginController;
 use App\Http\Controllers\UserControllers\ShowCompanyController;
 use App\Http\Controllers\UserControllers\RegisterUserController;
+use App\Http\Controllers\UserControllers\CompanyFollowController;
+use App\Http\Controllers\UserControllers\GetTravelMatrixController;
+use App\Http\Controllers\UserControllers\UserReservationController;
+use App\Http\Controllers\UserControllers\ShowCompanyPostsController;
+use App\Http\Controllers\UserControllers\CompanyRecommendedController;
 use App\Http\Controllers\UserControllers\ShowTravelDetailsControllers;
 use App\Http\Controllers\UserControllers\SearchAndFilterTravelController;
 use App\Http\Controllers\GetControllers\GetSelectorFilterTravelController;
-use App\Http\Controllers\UserControllers\CompanyFollowController;
-use App\Http\Controllers\UserControllers\CompanyRecommendedController;
-use App\Http\Controllers\UserControllers\GetTravelMatrixController;
-use App\Http\Controllers\UserControllers\ShowCompanyPostsController;
-use App\Http\Controllers\UserControllers\UserReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +40,9 @@ Route::get("view/companies",ShowCompanyController::class);
 
 Route::get("company/posts",ShowCompanyPostsController::class);
 
-Route::get("travel/getMatrix",GetTravelMatrixController::class)->middleware("auth:user");
+Route::get("travel/getMatrix",GetTravelMatrixController::class)->middleware("changeHeaderName","auth:user");
 
-Route::post("reservation",UserReservationController::class)->middleware("auth:user");
+Route::post("reservation",UserReservationController::class)->middleware("changeHeaderName","auth:user");
 
 Route::group(['prefix' => 'company' , "middleware" => "auth:user"],function (){
 
