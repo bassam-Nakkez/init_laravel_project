@@ -9,7 +9,7 @@ class AddEmployeeOutput  implements ResponseModel
     private String $employeeId;
     private String $firstName;
     private String $lastName;
-    private String $phoneNumber;
+    private String $email;
     private String $gendor;
     private ?String $image;
     // private String $companeId;
@@ -19,7 +19,7 @@ class AddEmployeeOutput  implements ResponseModel
         $this->employeeId = $data['employeeId'];
         $this->firstName = $data['firstName'];
         $this->lastName = $data['lastName'];
-        $this->phoneNumber = $data['phoneNumber'];
+        $this->email = $data['email'];
         $this->gendor = $data['gendor'];
         $this->image = $data['image'];
     }
@@ -30,7 +30,7 @@ class AddEmployeeOutput  implements ResponseModel
             "employeeId" => $this->employeeId,
             "firstName" => $this->firstName,
             "lastName" => $this->lastName,
-            "phoneNumber" => $this->phoneNumber,
+            "email" => $this->email,
             "gendor" => $this->gendor,
             "image" => $this->image,
         ];

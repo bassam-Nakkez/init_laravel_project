@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support;
+use Illuminate\Routing\Route;
+use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,6 +27,14 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        // added by me for cors
+        
+        // Route::prefix('api')->group(function () {
+        //     Passport::routes();
+        // });
+
+        //
 
         //
     }

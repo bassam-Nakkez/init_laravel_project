@@ -8,11 +8,11 @@ interface AdminEntity extends BaseEntity {
 
     public function id() : int;
 
-    // public function getEmail();
+    public function getEmail();
     
-    public function setPhoneNumber($phoneNumber);
+    // public function setPhoneNumber($phoneNumber);
     
-    public function getPhoneNumber();
+    // public function getPhoneNumber();
 
     public function getName () : string;
     

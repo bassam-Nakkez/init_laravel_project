@@ -26,7 +26,7 @@ class RegisterAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'phoneNumber'=>['required','numeric','digits:10','unique:admins'],
+            'email'=>['required','email','unique:admins'],
             'password' => [
                 'required',
                 'min:8',
@@ -43,8 +43,8 @@ class RegisterAdminRequest extends FormRequest
             // "phoneNumber.required" => VlidationMessage:: "رقم الهاتف مطلوب",
             "password.required" => "رقم السر مطلوب",
             "name.required" => "الاسم مطلوب",
-            "phoneNumber.numeric" => "يجب ألا يحتوي رقم الهاتف على احرف",
-            "phoneNumber.digits" => "يجب ألا يتجاوز رقم الهاتف العشر خانات",
+            "email.required" => "البريد الالكتروني مطلوب",
+            "email.email" => "الرجاء ادخال بريد الكتروني صالح",
             "password.min" => "يجب ان يتجاوز طول كلمة المرور الثمانية احرف",
             "name.min" => "يجب ان يتجاوز طول الاسم الثلاثة احرف",
             "name.max" => "يجب ان لا يتجاوز طول الاسم 25 حرف",

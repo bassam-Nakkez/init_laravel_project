@@ -8,13 +8,13 @@ class RegisterAdminOutput  implements ResponseModel
 
     private String $adminId;
     private String $name;
-    private String $phoneNumber;
+    private String $email;
 
     public function __construct($data)
     {
         $this->adminId = $data['adminId'];
         $this->name = $data['name'];
-        $this->phoneNumber = $data['phoneNumber'];
+        $this->email = $data['email'];
     }
 
     public function getOutputAsArray() : array
@@ -22,7 +22,7 @@ class RegisterAdminOutput  implements ResponseModel
         return [
             "adminId" => $this->adminId,
             "name" => $this->name,
-            "phoneNumber" => $this->phoneNumber,
+            "email" => $this->email,
         ];
     }
 }

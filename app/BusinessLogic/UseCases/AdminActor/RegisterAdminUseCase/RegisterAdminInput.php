@@ -7,18 +7,18 @@ class RegisterAdminInput implements RequestModel {
 
  
     public String $name;
-    public String $phoneNumber;
+    public String $email;
     public String $password;
 
     function __construct(array $data)
     {
         $this->name = $data['name'];
-        $this->phoneNumber = $data['phoneNumber'];
+        $this->email = $data['email'];
         $this->password = $data['password'];
     }
 
-    public function getPhoneNumber(){
-        return $this->phoneNumber;
+    public function getEmail(){
+        return $this->email;
     }
 
     public function setPassword($password){
@@ -35,7 +35,7 @@ class RegisterAdminInput implements RequestModel {
     {
         return [
             "name" => $this->name,
-            "phoneNumber" => $this->phoneNumber,
+            "email" => $this->email,
             "password" => $this->password
         ];
     }

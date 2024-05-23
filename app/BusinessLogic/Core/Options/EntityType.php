@@ -19,6 +19,7 @@ enum EntityType : String {
     case Recommand = 'recommand';
     case Post = 'post';
     case Reservation = 'reservation';
+    case Subscribe = 'subscribe';
 
 
 }

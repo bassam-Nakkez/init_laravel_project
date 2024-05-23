@@ -16,7 +16,11 @@ use App\Http\Controllers\GetControllers\GetSelectorFilterTravelController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('test',function(){return" Hi how are you ?" ;});
+
+Route::get('test',function(){
+     return" Hi how are you ?" ;
+})->middleware("myCros");
+
 Route::get('cities',GetCitiesController::class);
 Route::get("searchTravel/filters/selectors",GetSelectorFilterTravelController::class);
 

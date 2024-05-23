@@ -64,8 +64,8 @@ class Company extends Authenticatable implements CompanyEntity
      */
     protected $fillable = [
         'name',
-        // 'email',
-        'phoneNumber',
+        'email',
+        // 'phoneNumber',
         'password',
         "subscribeId",
         "aboutAs",

@@ -1,7 +1,6 @@
 <?php
 namespace App\Factories;
 
-
 use App\Http\Models\City;
 use App\Http\Models\Post;
 use App\Http\Models\User;
@@ -14,8 +13,8 @@ use App\Http\Models\Feature;
 use App\Http\Models\Station;
 use App\Http\Models\Employee;
 use App\Http\Models\Recommand;
+use App\Http\Models\Subscribe;
 use App\Http\Models\Reservation;
-use App\Http\Models\SeriesStation;
 use App\Http\Models\TravelStation;
 use App\Http\Models\TravelFeatures;
 use App\Http\Models\PullmanDescription;
@@ -48,7 +47,7 @@ class FactoryModel
             'recommand'             =>(new Recommand($data)),
             'post'                  =>(new Post($data)),
             'reservation'           =>(new Reservation($data)),
-
+            'subscribe'             =>(new Subscribe($data)),
         ];
 
         return $model[$type->value];

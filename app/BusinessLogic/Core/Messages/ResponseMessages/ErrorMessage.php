@@ -20,6 +20,8 @@ class ErrorMessage
     static $NoStations = "لا يوجد محطات";
     static $NoSearchResult ="لا يوجد نتائج";
     static $ExistsStation ="المحطة مجودة مسبقاً";
+    static $ExistsSubscribe ="الاشتراك مجود مسبقاً";
+
     static $ExistsFeature = "عذراً الميزة موجودة مسبقاً";
     static $NotExistItem = "العنصر غير موجود";
     static $ExistsPullmanType = "عذراً نوع البولمان موجود مسبقاً";

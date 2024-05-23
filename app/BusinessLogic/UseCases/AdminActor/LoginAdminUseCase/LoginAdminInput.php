@@ -6,21 +6,21 @@ use App\BusinessLogic\Core\InternalInterface\RequestModel;
 class LoginAdminInput implements RequestModel{
 
 
-    private String $phoneNumber;
+    private String $email;
     private String $password;
 
   public function __construct(array $data)
   {
 
-    $this->setPhoneNumber($data['phoneNumber']);
+    $this->setEmail($data['email']);
 
     $this->setPassword($data['password']);
 
   }
 
 
-  public function setPhoneNumber($phoneNumber){
-    $this->phoneNumber = $phoneNumber;
+  public function setEmail($email){
+    $this->email = $email;
   }
 
   public function setPassword($password) {
@@ -32,14 +32,14 @@ class LoginAdminInput implements RequestModel{
     }
 
 
-  public function getPhoneNumber() {
-    return $this->phoneNumber;
+  public function getEmail() {
+    return $this->email;
   }
 
 
   public function toArray() :array {
         return [
-            "phoneNumber" => $this->phoneNumber,
+            "email" => $this->email,
             "password" => $this->password
         ];
   }

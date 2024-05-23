@@ -24,7 +24,7 @@ class AddCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'phoneNumber'=>['required','numeric','digits:10','unique:companies'],
+            'email'=>['required','email','unique:companies'],
             'password' => [
                 'required',
                 'min:8',
@@ -38,12 +38,13 @@ class AddCompanyRequest extends FormRequest
     public function messages()
     {
         return [
-            "phoneNumber.required" => "رقم الهاتف مطلوب",
+            "email.required" => "البريد الالكتروني مطلوب",
+            "email.email" => "الرجاء ادخال بريد الكتروني صالح",
             "password.required" => "رقم السر مطلوب",
             "name.required" => "الاسم مطلوب",
             "subscribeId.required" => "معرف الاشتراك مطلوب",
-            "phoneNumber.numeric" => "يجب ألا يحتوي رقم الهاتف على احرف",
-            "phoneNumber.digits" => "يجب ألا يتجاوز رقم الهاتف العشر خانات",
+            // "phoneNumber.numeric" => "يجب ألا يحتوي رقم الهاتف على احرف",
+            // "phoneNumber.digits" => "يجب ألا يتجاوز رقم الهاتف العشر خانات",
             "password.min" => "يجب ان يتجاوز طول كلمة المرور الثمانية احرف",
             "name.min" => "يجب ان يتجاوز طول الاسم الثلاثة احرف",
             "name.max" => "يجب ان لا يتجاوز طول الاسم 25 حرف",

@@ -1,12 +1,12 @@
 <?php
 namespace App\Http\Models;
 
-use App\BusinessLogic\Interfaces\EntityInterfaces\AdminEntity;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Hash;
+use App\BusinessLogic\Interfaces\EntityInterfaces\AdminEntity;
 
  class Admin  extends Authenticatable implements AdminEntity
 {
@@ -25,14 +25,14 @@ use Illuminate\Support\Facades\Hash;
         $this->name = $name;
     }
 
-    public function getPhoneNumber() : String{
-        return $this->phoneNumber;
-    }
+    // public function getPhoneNumber() : String{
+    //     return $this->phoneNumber;
+    // }
 
     
-    public function setPhoneNumber($phoneNumber) : void{
-        $this->phoneNumber = $phoneNumber;
-    }
+    // public function setPhoneNumber($phoneNumber) : void{
+    //     $this->phoneNumber = $phoneNumber;
+    // }
 
     public function getPassword() : String{
         return $this->password;
@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\Hash;
 
     public function id():int {return $this->attributes['adminId'];}
 
-    // public function getEmail(){return $this->attributes['email'];}
+    public function getEmail(){return $this->attributes['email'];}
 
 
 
@@ -59,8 +59,8 @@ use Illuminate\Support\Facades\Hash;
      */
     protected $fillable = [
         'name',
-        // 'email',
-        'phoneNumber',
+        'email',
+       // 'phoneNumber',
         'password',
     ];
 

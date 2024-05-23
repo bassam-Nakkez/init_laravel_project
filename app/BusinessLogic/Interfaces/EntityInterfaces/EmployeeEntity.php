@@ -11,9 +11,9 @@ interface EmployeeEntity extends BaseEntity{
 
     // public function setEmail($email);
 
-    public function setPhoneNumber($phoneNumber);
+    // public function setPhoneNumber($phoneNumber);
     
-    public function getPhoneNumber();
+    // public function getPhoneNumber();
     
     public function getEmail() : string ;
     

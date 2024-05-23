@@ -18,8 +18,8 @@ class CreateEmployeesTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->enum('gendor',['انثى','ذكر']);
-            // $table->string('email')->unique();
-            $table->string('phoneNumber',20)->unique();
+            $table->string('email')->unique();
+            // $table->string('phoneNumber',20)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->date('birthDay')->nullable();

@@ -8,14 +8,14 @@ class LoginCompanyOutput implements ResponseModel{
 
     private String $companyId;
     private String $name;
-    private String $phoneNumber;
+    private String $email;
     private String $token;
 
     public function __construct($data)
     {
         $this->companyId = $data['companyId'];
         $this->name = $data['name'];
-        $this->phoneNumber = $data['phoneNumber'];
+        $this->email = $data['email'];
         $this->token = $data['token'];
     }
 
@@ -24,7 +24,7 @@ class LoginCompanyOutput implements ResponseModel{
         return [
             "companyId" => $this->companyId,
             "name" => $this->name,
-            "phoneNumber" => $this->phoneNumber,
+            "email" => $this->email,
             "token" => $this->token,
         ];
     }

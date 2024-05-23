@@ -32,7 +32,7 @@ public function execute() : Result {
     
     // create model
     $this->repository->buildRepositoryModel(EntityType::Admin ,[]);
-    $admin = $this->repository->readRepository()->getFirstModelByValue(Constent::$PHONE_NUMBER , $this->input->getPhoneNumber());
+    $admin = $this->repository->readRepository()->getFirstModelByValue(Constent::$EMAIL , $this->input->getEmail());
     
 
     // return $admin->admin->

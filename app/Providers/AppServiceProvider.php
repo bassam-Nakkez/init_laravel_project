@@ -12,7 +12,6 @@ use App\Repository\RepositoryDepartments\ReadDepartment;
 use App\Repository\RepositoryDepartments\CreateDepartment;
 use App\Repository\RepositoryDepartments\DeleteDepartment;
 use App\Repository\RepositoryDepartments\UpdateDepartment;
-use App\BusinessLogic\Services\LoginService\PublicLoginLogic;
 use App\Repository\RepositoryDepartments\FunctionsDepartment;
 use App\Adapters\Presenters\HttpPresenter\HttpPresenterResponse;
 use App\BusinessLogic\Interfaces\HelperFunctionsInterface;

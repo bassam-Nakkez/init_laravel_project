@@ -7,7 +7,7 @@ interface CompanyEntity extends BaseEntity{
 
     public function id() : int;
 
-    // public function getEmail();
+    public function getEmail();
 
     public function getName() : string;
     
@@ -17,9 +17,9 @@ interface CompanyEntity extends BaseEntity{
 
     public function getSubscribeId() : int;
 
-    public function setPhoneNumber($phoneNumber);
+    // public function setPhoneNumber($phoneNumber);
     
-    public function getPhoneNumber();
+    // public function getPhoneNumber();
 
     public function getAttributes() : array;
 

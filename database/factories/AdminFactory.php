@@ -15,13 +15,13 @@ class AdminFactory extends Factory
      */
 
     protected $model = Admin::class;
-    
+
     public function definition()
     {
         return [
-            'name'=>$this->faker->firstName(), 
+            'name'=>$this->faker->firstName(),
             //'email',
-            'phoneNumber' => $this->faker->unique()->phoneNumber(),
+            'email' => $this->faker->unique()->email(),
             'password'=> Hash::make('123456789'),
         ];
     }

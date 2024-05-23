@@ -8,7 +8,7 @@ class AddEmployeeInput implements RequestModel {
    
     public String $firstName;
     public String $lastName;
-    public String $phoneNumber;
+    public String $email;
     public String $password;
     public String $gendor;
     public ?String $image;
@@ -22,7 +22,7 @@ class AddEmployeeInput implements RequestModel {
 
         $this->firstName = $data['firstName'];
         $this->lastName = $data['lastName'];
-        $this->phoneNumber = $data['phoneNumber'];
+        $this->email = $data['email'];
         $this->setPassword($data['password']);
         $this->gendor = $data['gendor'];
         $this->image = $data['image'] ?? null;
@@ -37,8 +37,8 @@ class AddEmployeeInput implements RequestModel {
 
     }
 
-    public function getPhoneNumber(){
-        return $this->phoneNumber;
+    public function getEmail(){
+        return $this->email;
     }
 
     public function getPassword(){
@@ -50,7 +50,7 @@ class AddEmployeeInput implements RequestModel {
         return [
             "firstName" => $this->firstName,
             "lastName" => $this->lastName,
-            "phoneNumber" => $this->phoneNumber,
+            "email" => $this->email,
             "gendor" => $this->gendor,
             "image" => $this->image,
             "birthDay" => $this->birthDay,

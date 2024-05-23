@@ -20,9 +20,9 @@ class CompanyFactory extends Factory
     {
 
         $companies = ['الامير','طروادة', 'القدموس' ,'امان' ,'اجياد' , 'الاولى للنقل'];
-        
-        $companyName = $companies[ $this->faker->numberBetween(0,5) ] ; 
-        
+
+        $companyName = $companies[ $this->faker->numberBetween(0,5) ] ;
+
         $logo = ['الامير'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStMScsdrJl8hw--siY2VVR3uf277hMiyxu0S98sOsG-Q&s',
         'طروادة'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2DGDoUqVKzRD9n67_rJ3_lFbrQ8mF_kiEO5-86RhhfQ&s',
          'القدموس'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ69AvjNbUANhBQtIRTM-J6qp2I3NTNlOWg5u8Dor38cw&s' ,
@@ -35,7 +35,7 @@ class CompanyFactory extends Factory
         return [
             'name' =>$companyName,//$companies[$this->faker->unique()->numberBetween(0,4)],
             //'email',
-            'phoneNumber' => $this->faker->unique()->phoneNumber(),
+            'email' => $this->faker->unique()->email(),
             'password'=> Hash::make('123456789'),
             "subscribeId" => Subscribe::inRandomOrder()->first()->subscribeId,
             "aboutAs" => $this->faker->text(150),

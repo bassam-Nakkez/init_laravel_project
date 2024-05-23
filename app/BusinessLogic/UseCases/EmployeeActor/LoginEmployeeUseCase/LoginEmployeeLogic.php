@@ -34,7 +34,7 @@ public function execute() : Result {
     
     // create model
     $this->repository->buildRepositoryModel( EntityType::Employee ,[]);
-    $employee = $this->repository->readRepository()->getFirstModelByValue(Constent::$PHONE_NUMBER , $this->input->getPhoneNumber());
+    $employee = $this->repository->readRepository()->getFirstModelByValue(Constent::$EMAIL , $this->input->getEmail());
        
    
     if($employee instanceof EmployeeEntity ){ 
