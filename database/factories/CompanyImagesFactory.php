@@ -39,7 +39,7 @@ class CompanyImagesFactory extends Factory
             'https://us.123rf.com/450wm/visoot/visoot2306/visoot230602589/207333244-bus-luxury-vip-first-class-for-travel-vacation-tourism-the-coach-modern-bus.jpg',
             'https://us.123rf.com/450wm/visoot/visoot2306/visoot230602588/207333183-bus-luxury-vip-first-class-travel-vacation-tourism-tour-public-route-modern-art-design-vector.jpg',
             'https://thumbs.dreamstime.com/b/un-bus-luxueux-et-spacieux-au-design-futuriste-qui-conduit-sur-une-route-de-montagne-concept-transport-urbain-confortable-haut-272786230.jpg',
-            'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e36b69a2-a218-4f43-97c0-dd316a21c699/dg4s46x-682e1e49-8858-4155-9a52-8f195e6dfc07.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2UzNmI2OWEyLWEyMTgtNGY0My05N2MwLWRkMzE2YTIxYzY5OVwvZGc0czQ2eC02ODJlMWU0OS04ODU4LTQxNTUtOWE1Mi04ZjE5NWU2ZGZjMDcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.MwZ3yKgRx5LB5rec2W2ljA3yFOgO4Hb3MiEOwI4h9rs',
+            'https://static.vecteezy.com/system/resources/thumbnails/023/059/977/small_2x/futuristic-bus-on-the-road-ai-generated-free-photo.jpg',
             'https://static.vecteezy.com/system/resources/thumbnails/023/059/977/small_2x/futuristic-bus-on-the-road-ai-generated-free-photo.jpg',
     
              ];

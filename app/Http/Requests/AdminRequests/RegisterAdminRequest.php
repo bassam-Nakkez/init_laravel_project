@@ -26,7 +26,7 @@ class RegisterAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=>['required','email','unique:admins'],
+            'email'=>['required','email','unique:entity_auth_information'],
             'password' => [
                 'required',
                 'min:8',
@@ -48,6 +48,8 @@ class RegisterAdminRequest extends FormRequest
             "password.min" => "يجب ان يتجاوز طول كلمة المرور الثمانية احرف",
             "name.min" => "يجب ان يتجاوز طول الاسم الثلاثة احرف",
             "name.max" => "يجب ان لا يتجاوز طول الاسم 25 حرف",
+            "email.unique" => "البريد الالكترني غير متاح",
+
         ];
     }
 }

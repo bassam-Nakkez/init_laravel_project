@@ -38,6 +38,8 @@ class AddEmployeeRequest extends FormRequest
             "lastName.min" => "يجب ان يتجاوز طول الكنية الثلاثة احرف",
             "lastName.max" => "يجب ان لا يتجاوز طول الكنية 25 حرف",
             // 'image' =>
+            "email.unique" => "البريد الالكترني غير متاح",
+
         ];
     }
 
@@ -55,7 +57,7 @@ class AddEmployeeRequest extends FormRequest
             "gendor" => ['required', 'string', 'in:ذكر,أنثى'],
             "companyId" => ['required', 'integer', 'exists:companies,companyId'],
             "birthDay" => ['required', 'date_format:Y-m-d', 'string'],
-            'email' => ['required', 'email','unique:employees'],
+            'email' => ['required', 'email','unique:entity_auth_information'],
             // 'image'=>['required','numeric','digits:10'],
             'password' => [
                 'required',

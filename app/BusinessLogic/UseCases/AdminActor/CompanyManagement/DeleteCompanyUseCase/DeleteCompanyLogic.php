@@ -26,15 +26,29 @@ class DeleteCompanyLogic implements UseCase {
      
     public function execute() : Result { 
         
+        $this->service->SqlServices()->startTransaction();
+        $this->repository->buildRepositoryModel(EntityType::Company , ['companyId'=> $this->input->getCompanyId()]);
 
-        $this->repository->buildRepositoryModel(EntityType::Station , ['companyId'=> $this->input->getCompanyId()]);
-
+        $company  = $this->repository->readRepository()->getFirstModelByValue('companyId',$this->input->getCompanyId());
+        $authId =  $company->authId;
         $result = $this->repository->deleteRepository()->delete($this->input->getCompanyId());
-        
-        if(!$result)
-        return $this->output->sendFailed(null , ErrorMessage::$ConnectionProblem);
+        if(!$result){
+            $this->service->SqlServices()->rollbackTransaction();
+            return $this->output->sendFailed(null , ErrorMessage::$someThingWentWrong);
+        }
 
+        $this->repository->buildRepositoryModel(EntityType::Auth , ['companyId'=> $this->input->getCompanyId()]);
+        $result = $this->repository->deleteRepository()->delete($authId);
+
+        if(!$result){
+            $this->service->SqlServices()->rollbackTransaction();
+            return $this->output->sendFailed(null , ErrorMessage::$ConnectionProblem);
+        }
+
+        $this->service->SqlServices()->commitTransaction();
         return $this->output->sendSuccess($result , SuccessMessage::$DeletedSuccessfully);
+
+        
     }
 }
     

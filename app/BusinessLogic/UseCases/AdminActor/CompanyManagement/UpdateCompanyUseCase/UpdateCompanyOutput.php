@@ -6,23 +6,24 @@ use App\BusinessLogic\Core\InternalInterface\ResponseModel;
 
 class UpdateCompanyOutput  implements ResponseModel
 {
-    private String $companyId;
-    private String $name;
-    private String $phoneNumber;
 
-    public function __construct($data)
+    public function __construct(private $data)
     {
-        $this->companyId = $data['companyId'];
-        $this->name = $data['name'];
-        $this->phoneNumber = $data['phoneNumber'];
+        // $this->companyId = $data['companyId'];
+        // $this->name = $data['name'];
+        // $this->email = $data['email'];
     }
+
+    public function getDataAsObject()  { 
+        return $this->data;
+   }
 
     public function getOutputAsArray() : array
     {
         return [
-            "companyId" => $this->companyId,
-            "name" => $this->name,
-            "phoneNumber" => $this->phoneNumber,
+            // "companyId" => $this->companyId,
+            // "name" => $this->name,
+            // "email" => $this->email,
         ];
     }
 

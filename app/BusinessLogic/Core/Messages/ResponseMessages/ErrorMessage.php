@@ -28,6 +28,7 @@ class ErrorMessage
     static $followFiled = "عملية متابعة الشرمة فشلت ";
     static $unfollowFiled = "عملية الغاء متابعة الشرمة فشلت ";
     static $filedGetTravelMatrix = " يوجد خطأ الرجاء اعادة المحاولة  ";
+    static $someThingWentWrong = "حدث خطأ ما ";
 
 
 

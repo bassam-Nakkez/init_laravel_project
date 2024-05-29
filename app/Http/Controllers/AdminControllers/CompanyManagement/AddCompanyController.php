@@ -1,13 +1,13 @@
 <?php
-namespace App\Http\Controllers\AdminControllers;
+namespace App\Http\Controllers\AdminControllers\CompanyManagement;
 
 use App\Services\Services;
 use App\Repository\BaseRepository;
 use App\Http\Controllers\Controller;
 use App\Adapters\presenters\JsonResponsePresenter;
 use App\Http\Requests\CompanyRequests\AddCompanyRequest;
-use App\BusinessLogic\UseCases\AdminActor\AddCompanyUseCase\AddCompanyInput;
-use App\BusinessLogic\UseCases\AdminActor\AddCompanyUseCase\AddCompanyLogic;
+use App\BusinessLogic\UseCases\AdminActor\CompanyManagement\AddCompanyUseCase\AddCompanyInput;
+use App\BusinessLogic\UseCases\AdminActor\CompanyManagement\AddCompanyUseCase\AddCompanyLogic;
 
 class AddCompanyController extends Controller
 {

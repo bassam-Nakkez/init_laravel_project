@@ -10,12 +10,19 @@ class AddCompanyOutput  implements ResponseModel
     private String $name;
     private String $email;
 
-    public function __construct($data)
+    public function __construct(private $data)
     {
-        $this->companyId = $data['companyId'];
-        $this->name = $data['name'];
-        $this->email = $data['email'];
+        // $this->companyId = $data['companyId'];
+        // $this->name = $data['name'];
+        // $this->logo = $data['logo'];
+        // $this->aboutAs = $data['logo'];
+
     }
+
+    public function getDataAsObject()  { 
+        return $this->data;
+   }
+
 
     public function getOutputAsArray() : array
     {

@@ -3,6 +3,7 @@ namespace App\Factories;
 
 use App\Http\Models\City;
 use App\Http\Models\Post;
+use App\Http\Models\Role;
 use App\Http\Models\User;
 use App\Http\Models\Admin;
 use App\Http\Models\Follow;
@@ -14,6 +15,7 @@ use App\Http\Models\Station;
 use App\Http\Models\Employee;
 use App\Http\Models\Recommand;
 use App\Http\Models\Subscribe;
+use App\Http\Models\AuthEntity;
 use App\Http\Models\Reservation;
 use App\Http\Models\TravelStation;
 use App\Http\Models\TravelFeatures;
@@ -48,6 +50,7 @@ class FactoryModel
             'post'                  =>(new Post($data)),
             'reservation'           =>(new Reservation($data)),
             'subscribe'             =>(new Subscribe($data)),
+            'auth'                  =>(new Role($data)),
         ];
 
         return $model[$type->value];

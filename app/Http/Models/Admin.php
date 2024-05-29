@@ -34,21 +34,12 @@ use App\BusinessLogic\Interfaces\EntityInterfaces\AdminEntity;
     //     $this->phoneNumber = $phoneNumber;
     // }
 
-    public function getPassword() : String{
-        return $this->password;
-    }
 
-    public function setPassword($password) : void{
-        $this->password = Hash::make($password);
-    }
-
-    public function getAttributes():array{return $this->attributes;}
 
     public function setData($data){$this->attributes = $data;}
 
     public function id():int {return $this->attributes['adminId'];}
 
-    public function getEmail(){return $this->attributes['email'];}
 
 
 
@@ -62,6 +53,7 @@ use App\BusinessLogic\Interfaces\EntityInterfaces\AdminEntity;
         'email',
        // 'phoneNumber',
         'password',
+        'authId',
     ];
 
     /**

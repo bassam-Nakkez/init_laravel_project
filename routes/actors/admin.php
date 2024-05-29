@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminControllers\AddCompanyController;
+use App\Http\Requests\publicRequests\LoginByEmailRequest;
 use App\Http\Controllers\AdminControllers\AdminLoginController;
+use App\Http\Controllers\UserControllers\ShowCompanyController;
 use App\Http\Controllers\AdminControllers\RegisterAdminController;
+use App\Http\Controllers\AdminControllers\CompanyManagement\AddCompanyController;
+use App\Http\Controllers\AdminControllers\CompanyManagement\DeleteCompanyController;
+use App\Http\Controllers\AdminControllers\CompanyManagement\UpdateCompanyController;
 use App\Http\Controllers\AdminControllers\PullmanTypeManagement\AddPullmanTypeController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +22,25 @@ use App\Http\Controllers\AdminControllers\PullmanTypeManagement\AddPullmanTypeCo
 */
 
 
+Route::post('login', function( LoginByEmailRequest $request){
+    
+    $result = (new AdminLoginController)->__invoke( $request);
+    return $result  ;
+
+});
 
 
- Route::post('login',AdminLoginController::class);
  Route::post('signup',RegisterAdminController::class);
 
 
  //-------
- Route::post('add/company',AddCompanyController::class);
+ Route::prefix('company')->group(function () {
+    Route::post('add',AddCompanyController::class);
+    Route::post('delete',DeleteCompanyController::class);
+    Route::post('update',UpdateCompanyController::class);
+
+});
+ Route::get("view/companies",ShowCompanyController::class);
 
 
  Route::prefix('pullmanType')->group(function () {

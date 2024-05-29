@@ -16,11 +16,7 @@ class CreateAdminsTable extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id('adminId');
             $table->string('name');
-             $table->string('email')->unique();
-            // $table->string('phoneNumber',20)->unique();
-            $table->string('password');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->foreignId('authId')->references('authId')->on('entity_auth_information')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

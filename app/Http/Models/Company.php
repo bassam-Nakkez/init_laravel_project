@@ -71,7 +71,8 @@ class Company extends Authenticatable implements CompanyEntity
         "aboutAs",
         "logo",
         "isActive",
-        "recommendation"
+        "recommendation",
+        "authId"
     ];
     /**
      * The attributes that should be hidden for serialization.

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateEntityAuthInformationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('userId');
-            $table->string('firstName',25);
-            $table->string('lastName',25);
-            $table->enum('gendor',['ذكر','انثى']);
-            $table->string('phoneNumber',20)->unique();
+        Schema::create('entity_auth_information', function (Blueprint $table) {
+            $table->bigIncrements('authId');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('email',60)->unique();
             $table->string('password');
-            $table->string('personalId')->max(11);
-            $table->date('birthDay');
+            $table->integer('type')->max(1);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('entity_auth_information');
     }
 }

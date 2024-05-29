@@ -31,24 +31,44 @@ class AddCompanyLogic implements UseCase {
     
 
     $this->input->setPassword( $this->service->hashData($this->input->getPassword()));
-    
+
+
+    // start transaction..
+
+   $this->service->SqlServices()->startTransaction();
+
     //Create Model
+    $this->repository->buildRepositoryModel(EntityType::Auth , []);
+    
+    //insert to dataBase
+    $authInfo = $this->repository->createRepository()->create($this->input->authInfo());
+        
+        // if model is not created
+        if($authInfo == null){
+            $this->service->SqlServices()->rollbackTransaction();
+            return $this->output->sendFailed(null, ErrorMessage::$errorOccurred); 
+        } 
+
+        
+     //Create Model
     $this->repository->buildRepositoryModel(EntityType::Company , []);
     
     //insert to dataBase
-    $company = $this->repository->createRepository()->create($this->input->toArray());
+    $company = $this->repository->createRepository()->create($this->input->companyInfo($authInfo->authId));
     
     // if model is not created
-    if($company == null) return $this->output->sendFailed(null, ErrorMessage::$errorOccurred); 
-        
-    // return response  
-    return $this->output->sendSuccess(
-    (new AddCompanyOutput($company))->getOutputAsArray(),
+    if($company == null){
+        $this->service->SqlServices()->rollbackTransaction();
+        return $this->output->sendFailed(null, ErrorMessage::$errorOccurred); 
+    } 
+
+     $this->service->SqlServices()->commitTransaction();
+        //return response  
+     return $this->output->sendSuccess(
+        (new AddCompanyOutput($company))->getDataAsObject(),
             SuccessMessage::$registerSuccessfully
         );
     
-    
-       
     }
     
     

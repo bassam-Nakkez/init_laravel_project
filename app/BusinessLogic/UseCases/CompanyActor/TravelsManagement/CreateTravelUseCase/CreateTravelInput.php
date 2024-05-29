@@ -23,7 +23,7 @@ class CreateTravelInput implements RequestModel{
         $this->companyId = $data['companyId'];
         $this->from = $data ['from'];
         $this->to = $data['to'];
-        $this->stations =  (isset($data['stations']))? $data['stations'] : null;
+       // $this->stations =  (isset($data['stations']))? $data['stations'] : null;
         $this->features =  (isset($data['features']))? $data['features'] : null;
         $this->pullmanId = $data['pullmanIdDescriptionId'];
         $this->note = $data['note'];

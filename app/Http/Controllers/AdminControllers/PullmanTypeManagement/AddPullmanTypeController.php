@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Adapters\presenters\JsonResponsePresenter;
 use App\BusinessLogic\UseCases\AdminActor\PullmanManagement\AddPullmanUseCase\AddPullmanInput;
 use App\BusinessLogic\UseCases\AdminActor\PullmanManagement\AddPullmanUseCase\AddPullmanLogic;
-use App\BusinessLogic\UseCases\CompanyActor\FeaturesManagement\AddFeatureUseCase\AddFeatureLogic;
 
 class AddPullmanTypeController extends Controller
 {

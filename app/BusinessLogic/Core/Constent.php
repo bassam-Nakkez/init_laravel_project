@@ -15,8 +15,11 @@ class Constent {
     static $COMPANY  = "company";
     static $ADMIN    = "admin";
     static $EMPLOYEE = "employee";
+    static $AuthID   = "authId";
 
 
 //-----------------<<   Country   >>----------------       
     static $SYRIA    = "+963";
+
+
 }

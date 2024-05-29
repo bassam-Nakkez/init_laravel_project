@@ -35,7 +35,7 @@ class TravelFactory extends Factory
             'programId'=>Program::inRandomOrder()->first()->programId,
             "from"=> $cities[ $number],
             "to"=>$cities[$number2],
-            'travelDate'=>$this->faker->dateTimeBetween('2024-5-10' ,'2024-6-1')->format('Y-m-d') ,
+            'travelDate'=>$this->faker->dateTimeBetween('2024-6-1' ,'2024-6-20')->format('Y-m-d') ,
             'timeToLeave'=>$this->faker->time(),
             "price"=>$this->faker->numberBetween(40000,90000 ),
             "numOfSeatsBooking"=>$this->faker->numberBetween(0,24),

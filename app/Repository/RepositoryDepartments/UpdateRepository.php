@@ -15,7 +15,7 @@ class UpdateRepository implements UpdateRepositoryInterface
 
     // update data in dataBase
     public function update($id , $newData) {
-        return  $this->model->update($newData);
+        return  $this->model->find($id)->update($newData);
     }
 
     public function updateByConditions(array $conditions , $newData){

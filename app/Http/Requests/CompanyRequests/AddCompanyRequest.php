@@ -24,13 +24,15 @@ class AddCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=>['required','email','unique:companies'],
+            'email'=>['required','email','unique:entity_auth_information'],
             'password' => [
                 'required',
                 'min:8',
             ],
             "name" => ['required','max:25','min:3'],
             "subscribeId" => ['required', 'integer', 'exists:subscribes,subscribeId'],
+            'aboutAs'=> ['required'],
+            'logo' =>  ['required'],
         ];
     }
 
@@ -40,6 +42,7 @@ class AddCompanyRequest extends FormRequest
         return [
             "email.required" => "البريد الالكتروني مطلوب",
             "email.email" => "الرجاء ادخال بريد الكتروني صالح",
+            "email.unique" => "البريد الالكترني غير متاح",
             "password.required" => "رقم السر مطلوب",
             "name.required" => "الاسم مطلوب",
             "subscribeId.required" => "معرف الاشتراك مطلوب",

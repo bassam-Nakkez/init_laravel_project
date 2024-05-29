@@ -4,14 +4,11 @@ namespace Database\Seeders;
 
 use App\Http\Models\User;
 use App\Http\Models\Admin;
-use App\Http\Models\Series;
 use Illuminate\Database\Seeder;
-use App\Http\Models\SeriesStation;
 use Database\Factories\CityFactory;
 use Database\Factories\PostFactory;
 use Database\Factories\UserFactory;
 use Database\Factories\AdminFactory;
-use Database\Factories\PostsFactory;
 use Database\Factories\FollowFactory;
 use Database\Factories\TravelFactory;
 use Database\Factories\CompanyFactory;

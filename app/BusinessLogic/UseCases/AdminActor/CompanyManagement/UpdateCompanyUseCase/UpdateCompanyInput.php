@@ -4,23 +4,25 @@ namespace App\BusinessLogic\UseCases\AdminActor\CompanyManagement\UpdateCompanyU
 use App\BusinessLogic\Core\InternalInterface\RequestModel;
 
 class UpdateCompanyInput implements RequestModel {
-    public String $name;
-    public String $phoneNumber;
-    public String $password;
-    public String $subscribeId;
-    public String $aboutAs;
-    public String $logo;
-    public String $companyId;
+    // public String $name;
+    // public String $password;
+    // public String $subscribeId;
+    // public String $aboutAs;
+    // public String $logo;
+     public String $companyId;
+    public $authInfo =[];
+    public $newData = [];
 
 
     function __construct(array $data)
     {
-        $this->name = $data['name'];
-        $this->phoneNumber = $data['phoneNumber'];
-        $this->subscribeId = $data['subscribeId'];
-        $this->setPassword($data['password']);
-        $this->aboutAs     = $data['aboutAs'];
-        $this->logo        = $data['logo'];
+        if( isset($data['name']) ) $this->newData [ 'name'] = $data['name'];
+        if( isset($data['email']) ) $this->authInfo [ 'email'] = $data['email'] ;
+        if( isset($data['password']) ) $this->authInfo [ 'password'] = $data['password'];
+        if( isset($data['subscribeId']) ) $this->newData [ 'subscribeId'] = $data['subscribeId'];
+        if( isset($data['aboutAs']) ) $this->newData [ 'aboutAs'] = $data['aboutAs'];
+        if( isset($data['logo']) ) $this->newData [ 'logo'] = $data['logo'];
+        if( isset($data['isActive']) ) $this->newData [ 'isActive'] = $data['isActive'];
         $this->companyId        = $data['companyId'];
 
 
@@ -30,30 +32,18 @@ class UpdateCompanyInput implements RequestModel {
         return $this->companyId;
     }
 
-
-    public function setPassword($password){
-        // $this->password = Hash::make($password);
-        $this->password =$password;
+    public function getAuthInfo():array{
+        return $this->authInfo;
     }
 
-    public function getPhoneNumber(){
-        return $this->phoneNumber;
+    public function getNewData():array{
+        return $this->newData;
     }
-
-    public function getPassword(){
-        return $this->password;
-    }
-
 
     public function toArray() : array
     {
         return [
-            "name" => $this->name,
-            "phoneNumber" => $this->phoneNumber,
-            "password" => $this->password,
-            "subscribeId" => $this->subscribeId,
-            "logo"=> $this->logo,
-            "aboutAs"=> $this->aboutAs
+
         ];
     }
 

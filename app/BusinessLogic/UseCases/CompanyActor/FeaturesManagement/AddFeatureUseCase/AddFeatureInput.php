@@ -10,7 +10,7 @@ class AddFeatureInput implements RequestModel{
 
     public function __construct(array $data){
         $this->companyId = $data['companyId'] ;
-        $this->features = $data['feature'];
+        $this->features = $data['features'];
 }
 
 public function getCompanyId() {

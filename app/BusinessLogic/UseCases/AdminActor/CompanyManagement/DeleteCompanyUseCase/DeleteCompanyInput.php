@@ -10,7 +10,7 @@ class DeleteCompanyInput implements RequestModel{
   
 
     public function __construct(array $data){
-        $this->companyId = $data['companyId']??null;
+        $this->companyId = $data['companyId'];
       //  $this->stationId = $data['stationId'] ;
 
 }

@@ -18,16 +18,15 @@ class LoginByEmailRequest extends FormRequest
 
 
 
+
     public function messages()
     {
-        return 
-        [
-            'email.required'     => 'The email field is required.',
-            // 'email.email'        => 'Please enter a valid email address.',
-            // 'password.required'  => 'The password field is required.',
-            // 'password.string'    => 'The password field must be a string.',
-
-         ];
+        return [
+            "email.required" => "البريد الالكتروني مطلوب",
+            "password.required" => "كلمة المرور مطلوبة",
+            "email.email" => "البريد الالكتروني غير صالح",
+            "password.min" => "يجب ان يتجاوز طول كلمة المرور الثمانية احرف",
+        ];
     }
 
     /**

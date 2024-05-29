@@ -28,6 +28,7 @@ class Employee extends Authenticatable implements EmployeeEntity
         'firstName',
         'lastName',
         'email',
+        'authId',
         // 'phoneNumber',
         'gendor',
         'image',

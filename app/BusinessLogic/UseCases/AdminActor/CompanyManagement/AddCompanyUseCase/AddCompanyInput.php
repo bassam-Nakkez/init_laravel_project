@@ -8,8 +8,8 @@ class AddCompanyInput implements RequestModel {
     public String $email;
     public String $password;
     public String $subscribeId;
-    public String $aboutAs;
-    public String $logo;
+    public $aboutAs;
+    public $logo;
 
     function __construct(array $data)
     {
@@ -17,8 +17,8 @@ class AddCompanyInput implements RequestModel {
         $this->email = $data['email'];
         $this->subscribeId = $data['subscribeId'];
         $this->setPassword($data['password']);
-        $this->aboutAs     = $data['aboutAs'];
-        $this->logo        = $data['logo'];
+        $this->aboutAs = $data['aboutAs'];
+        $this->logo = $data['logo'];
 
     }
 
@@ -35,16 +35,32 @@ class AddCompanyInput implements RequestModel {
         return $this->password;
     }
 
+    public function authInfo(){
+        return [
+            "email" => $this->email,
+            "password" => $this->password,
+            "type"=>1,
+        ];
+    }
+
+    public function companyInfo($authId) : array
+    {
+        return [
+            "name" => $this->name,
+            "subscribeId" => $this->subscribeId,
+            "logo"=> $this->logo,
+            "aboutAs"=> $this->aboutAs,
+            "authId" => $authId,
+        ];
+    }
 
     public function toArray() : array
     {
         return [
-            "name" => $this->name,
-            "email" => $this->email,
-            "password" => $this->password,
-            "subscribeId" => $this->subscribeId,
-            "logo"=> $this->logo,
-            "aboutAs"=> $this->aboutAs
+            // "name" => $this->name,
+            // "subscribeId" => $this->subscribeId,
+            // "logo"=> $this->logo,
+            // "aboutAs"=> $this->aboutAs
         ];
     }
 
