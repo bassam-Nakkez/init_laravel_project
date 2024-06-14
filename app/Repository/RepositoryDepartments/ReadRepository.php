@@ -14,6 +14,11 @@ class ReadRepository implements ReadRepositoryInterface
         return $recorded? $recorded : null;
     }
 
+    public function getModelByValue($key,$operation,$value) {
+        $recorded = $this->model->where($key,$operation,$value)->first();
+        return $recorded? $recorded : null;
+    }
+
     public function getModelByWhere($condition) {
         $recorded = $this->model->where($condition)->first();
         return $recorded? $recorded : null;

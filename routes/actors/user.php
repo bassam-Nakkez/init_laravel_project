@@ -12,6 +12,13 @@ use App\Http\Controllers\UserControllers\CompanyRecommendedController;
 use App\Http\Controllers\UserControllers\ShowTravelDetailsControllers;
 use App\Http\Controllers\UserControllers\SearchAndFilterTravelController;
 use App\Http\Controllers\GetControllers\GetSelectorFilterTravelController;
+use App\Http\Controllers\UserControllers\CompanyFollowController;
+use App\Http\Controllers\UserControllers\CompanyRecommendedController;
+use App\Http\Controllers\UserControllers\GetComanyTravelController;
+use App\Http\Controllers\UserControllers\GetHistoryCurrentTravelController;
+use App\Http\Controllers\UserControllers\GetTravelMatrixController;
+use App\Http\Controllers\UserControllers\ShowCompanyPostsController;
+use App\Http\Controllers\UserControllers\UserReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +47,11 @@ Route::get("view/companies",ShowCompanyController::class);
 
 Route::get("company/posts",ShowCompanyPostsController::class);
 
-Route::get("travel/getMatrix",GetTravelMatrixController::class)->middleware("changeHeaderName","auth:user");
+Route::get("company/get/travel",GetComanyTravelController::class);
+
+Route::get("get/travel",GetHistoryCurrentTravelController::class);
+
+Route::get("travel/getMatrix",GetTravelMatrixController::class)->middleware("auth:user");
 
 Route::post("reservation",UserReservationController::class)->middleware("changeHeaderName","auth:user");
 

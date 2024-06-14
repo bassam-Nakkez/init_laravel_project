@@ -6,6 +6,7 @@ use App\BusinessLogic\Interfaces\Result;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Core\InternalInterface\UseCase;
 use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
+use App\BusinessLogic\Core\Options\GenderEnum;
 use App\BusinessLogic\Interfaces\PresentersInterfaces\PresenterInterface;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
 use App\BusinessLogic\UseCases\UserActor\GetTravelMatrixUseCase\logic\GetMatrixAlogrithm;
@@ -52,7 +53,13 @@ class UserReservationLogic implements UseCase {
                 throw new Exception("يوجد خطأ في اضافة الحجز الرجاء اعادة المحاولة");
             }
 
+            if($value["gendor"] == GenderEnum::male->value)
+            {
+                $matrix[$value["seteIndex"]] = 2;
+            }
+            else{
             $matrix[$value["seteIndex"]] = 1;
+            }
         }
 
         $travel->seatNumbers = json_encode($matrix);
