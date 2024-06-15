@@ -132,6 +132,10 @@ class ReadRepository implements ReadRepositoryInterface
             'reservation' ,function($q) use ($data){
                 $q->where("userId","=",$data['userId']);
             }
-        )->where("travelDate",$data['operation'],$data['travelDate'])->get();
+        )->where("travelDate",$data['operation'],$data['travelDate'])->with('company')->get();
+    }
+
+    public function getCompanyTravel($data){
+        return $this->model->where('travelDate',">=",$data['date'])->where("companyId","=",$data['companyId'])->with('company')->get();
     }
 }

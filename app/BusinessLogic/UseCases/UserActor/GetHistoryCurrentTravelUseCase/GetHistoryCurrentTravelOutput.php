@@ -13,7 +13,7 @@ class GetHistoryCurrentTravelOutput implements ResponseModel {
     public function getOutputAsArray() : array{
         return [
             "myCurrentTrips"=>$this->myCurrentTrips,
-            "myPerviousTrips" =>$this->myPerviousTrips
+            "myPreviousTrips" =>$this->myPerviousTrips
         ];
     }
 

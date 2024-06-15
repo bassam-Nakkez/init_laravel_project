@@ -27,11 +27,13 @@ class GetComanyTravelLogic implements UseCase {
         $this->repository->buildRepositoryModel(EntityType::Travel , []);
 
         $condation = [
-            "companyId" => $this->input->getCompanyId()
+            "companyId" => $this->input->getCompanyId(),
+            "date" => $this->input->getDate(),
+
         ];
 
         // Get Travel from dataBase
-        $travels = $this->repository->readRepository()->getModelsByWhere($condation);
+        $travels = $this->repository->readRepository()->getCompanyTravel($condation);
 
 
         if($travels == null )
