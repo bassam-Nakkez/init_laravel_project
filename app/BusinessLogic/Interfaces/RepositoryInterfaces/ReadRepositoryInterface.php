@@ -32,4 +32,6 @@ interface ReadRepositoryInterface{
     public function getModelsByWhere($condition) ;
 
     public function getModelByValue($key,$operation,$value);
+
+    public function getUserTravel($data);
 }

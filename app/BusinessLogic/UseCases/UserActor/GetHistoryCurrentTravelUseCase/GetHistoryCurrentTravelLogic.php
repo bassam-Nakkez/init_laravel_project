@@ -25,13 +25,21 @@ class GetHistoryCurrentTravelLogic implements UseCase {
 
         $this->repository->buildRepositoryModel(EntityType::Travel , []);
 
+        $attri = [
+            "userId"=>$this->input->getUserId(),
+            "operation" => ">=",
+            "travelDate" => $this->input->getDate()
+        ];
         // Get Travel from dataBase
-        $currenttravels = $this->repository->readRepository()->getModelByValue('userId',"=",$this->input->getUserId());
-        $currenttravels = $this->repository->readRepository()->getModelByValue('travelDate',">=",$this->input->getDate());
+        $currenttravels = $this->repository->readRepository()->getUserTravel($attri);
 
         $this->repository->buildRepositoryModel(EntityType::Travel , []);
-        $historytravels = $this->repository->readRepository()->getModelByValue('userId',"=",$this->input->getUserId());
-        $historytravels = $this->repository->readRepository()->getModelByValue('travelDate',"<",$this->input->getDate());
+        $attri = [
+            "userId"=>$this->input->getUserId(),
+            "operation" => "<",
+            "travelDate" => $this->input->getDate()
+        ];
+        $historytravels = $this->repository->readRepository()->getUserTravel($attri);
 
 
         return $this->output->sendSuccess((new GetHistoryCurrentTravelOutput($currenttravels,$historytravels))->getOutputAsArray() , 'Success');

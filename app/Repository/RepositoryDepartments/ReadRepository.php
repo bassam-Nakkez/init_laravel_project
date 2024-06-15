@@ -3,6 +3,7 @@ namespace App\Repository\RepositoryDepartments;
 
 use App\Http\Models\Station;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\ReadRepositoryInterface;
+use App\Http\Models\User;
 
 class ReadRepository implements ReadRepositoryInterface
  {
@@ -126,4 +127,11 @@ class ReadRepository implements ReadRepositoryInterface
        return $query->get();
     }
 
+    public function getUserTravel($data){
+        return $this->model->whereHas(
+            'reservation' ,function($q) use ($data){
+                $q->where("userId","=",$data['userId']);
+            }
+        )->where("travelDate",$data['operation'],$data['travelDate'])->get();
+    }
 }

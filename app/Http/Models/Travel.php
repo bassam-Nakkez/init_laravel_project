@@ -94,6 +94,6 @@ class Travel extends Model implements TravelEntity
      */
     public function reservation()
     {
-        return $this->hasOne(Reservation::class, 'reservationId', 'reservationId');
+        return $this->hasMany(Reservation::class, 'travelId', 'travelId');
     }
 }
