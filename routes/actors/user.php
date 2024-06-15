@@ -44,7 +44,7 @@ Route::get("company/posts",ShowCompanyPostsController::class);
 
 Route::get("company/get/travel",GetComanyTravelController::class);
 
-Route::get("get/travel",GetHistoryCurrentTravelController::class);
+Route::get("get/travel",GetHistoryCurrentTravelController::class)->middleware("auth:user");
 
 Route::get("travel/getMatrix",GetTravelMatrixController::class)->middleware("auth:user");
 

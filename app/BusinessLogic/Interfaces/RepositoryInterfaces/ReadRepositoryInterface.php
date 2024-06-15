@@ -34,4 +34,6 @@ interface ReadRepositoryInterface{
     public function getModelByValue($key,$operation,$value);
 
     public function getUserTravel($data);
+
+    public function getCompanyTravel($data);
 }

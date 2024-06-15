@@ -23,7 +23,7 @@ class GetHistoryCurrentTravelController extends Controller
 
 
 
-        public function __invoke( GetHistoryCurrentTravelRequest  $request )
+        public function __invoke()
         {
 
             // $stationId = 21;
@@ -34,12 +34,12 @@ class GetHistoryCurrentTravelController extends Controller
             // $subQuery = SeriesStation::select('seriesId')->where('stationId',4)->get();
             // return response()->json($subQuery);
 
+            $data ["userId"] = auth()->user()->userId;
 
             return $this->applyAspect(
 
             //--------------------Functional Service ------------------------------------
-
-            new GetHistoryCurrentTravelLogic(new GetHistoryCurrentTravelInput($request->all()) ,
+            new GetHistoryCurrentTravelLogic(new GetHistoryCurrentTravelInput($data) ,
             new BaseRepository ,
             new JsonResponsePresenter,
            ),
