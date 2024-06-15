@@ -14,7 +14,7 @@ class GetTravelMatrixController extends Controller
     public function __invoke(GetTravelMatrixRequest $showTravelDetailsRequest){
 
 
-        $data = [///"userId" =>auth()->user()->userId
+        $data = ["userId" =>auth()->user()->userId,
                  "travelId" => $showTravelDetailsRequest->travelId];
         return $this->applyAspect(
 

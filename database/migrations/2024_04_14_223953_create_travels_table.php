@@ -35,7 +35,7 @@ class CreateTravelsTable extends Migration
             $table->enum('day',['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']);
             $table->integer('DailySerialNumber')->nullable();
             $table->enum('periodName',['morning', 'noon','afternoon','evening','night'])->nullable();
-            $table->text("seatNumbers")->default(json_encode(array_fill(0,47,0)));
+            $table->text("seatNumbers");//->default(json_encode(array_fill(0,47,0)));
             $table->timestamps();
 
 

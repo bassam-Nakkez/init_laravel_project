@@ -7,6 +7,7 @@ use App\Http\Models\Admin;
 use Illuminate\Database\Seeder;
 use Database\Factories\CityFactory;
 use Database\Factories\PostFactory;
+use Database\Factories\RoleFactory;
 use Database\Factories\UserFactory;
 use Database\Factories\AdminFactory;
 use Database\Factories\FollowFactory;
@@ -33,7 +34,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        (new RoleFactory())->count(20)->create();
         (new CountryFactory())->count(1)->create();
         (new CityFactory())->count(5)->create();
         (new SubscribeFactory())->count(3)->create();

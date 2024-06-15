@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Http\Models\Role;
 use App\Http\Models\Company;
 use App\Http\Models\Subscribe;
 use Illuminate\Support\Facades\Hash;
@@ -35,8 +36,7 @@ class CompanyFactory extends Factory
         return [
             'name' =>$companyName,//$companies[$this->faker->unique()->numberBetween(0,4)],
             //'email',
-            'email' => $this->faker->unique()->email(),
-            'password'=> Hash::make('123456789'),
+            'authId' =>  Role::inRandomOrder()->first()->authId,
             "subscribeId" => Subscribe::inRandomOrder()->first()->subscribeId,
             "aboutAs" => $this->faker->text(150),
             "logo" =>$logo[$companyName],

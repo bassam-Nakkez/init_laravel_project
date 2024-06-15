@@ -3,11 +3,10 @@
 namespace Database\Factories;
 
 use App\Http\Models\Role;
-use App\Http\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AdminFactory extends Factory
+class RoleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,15 +14,15 @@ class AdminFactory extends Factory
      * @return array
      */
 
-    protected $model = Admin::class;
+     protected $model = Role::class;
 
+    
     public function definition()
     {
         return [
-            'name'=>$this->faker->firstName(),
-            //'email',
-            'authId' =>  Role::inRandomOrder()->first()->authId,
-
+            'email' => $this->faker->unique()->email(),
+            'password'=> Hash::make('123456789'),
+            "type"=>$this->faker->numberBetween(0,2),
         ];
     }
 }
