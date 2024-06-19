@@ -1,26 +1,25 @@
 <?php
+namespace App\Http\Controllers\CompanyControllers\TravelsManagementControllers;
 
-namespace App\Http\Controllers\AdminControllers\CompanyManagement;
 
 use App\Services\Services;
 use Illuminate\Http\Request;
 use App\Repository\BaseRepository;
 use App\Http\Controllers\Controller;
 use App\Adapters\presenters\JsonResponsePresenter;
-use App\BusinessLogic\UseCases\AdminActor\CompanyManagement\ViewCompanies\ViewCompanyLogic;
+use App\BusinessLogic\UseCases\CompanyActor\TravelsManagement\ViewTravelsUseCase\ViewTravelsInput;
+use App\BusinessLogic\UseCases\CompanyActor\TravelsManagement\ViewTravelsUseCase\ViewTravelsLogic;
 
-class ViewCompanyController extends Controller
+class ViewTravelsController extends Controller
 {
     public function __invoke( Request  $request )
     {
-
-
         return $this->applyAspect(
 
         //--------------------Functional Service ------------------------------------
 
-        new ViewCompanyLogic(
-        new BaseRepository ,
+        new ViewTravelsLogic(new ViewTravelsInput($request->all()) ,
+        new BaseRepository,
         new JsonResponsePresenter,
         new Services),
 
@@ -28,9 +27,6 @@ class ViewCompanyController extends Controller
         [
             /*array of non functional services*/
         ]
-
-
-)->sendResult();
-
-}
+    )->sendResult();
+  }
 }

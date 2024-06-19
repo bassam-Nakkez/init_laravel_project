@@ -11,8 +11,6 @@ use App\BusinessLogic\Interfaces\RepositoryInterfaces\UpdateRepositoryInterface;
 
 interface BaseRepositoryInterface
 {
-
-
     public function createRepository(): CreateRepositoryInterface;
 
     public function readRepository(): ReadRepositoryInterface;
@@ -30,7 +28,5 @@ interface BaseRepositoryInterface
 
     
 
-
-
-
+  
 }

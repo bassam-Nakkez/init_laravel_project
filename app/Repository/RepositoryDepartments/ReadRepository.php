@@ -3,7 +3,6 @@ namespace App\Repository\RepositoryDepartments;
 
 use App\Http\Models\Station;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\ReadRepositoryInterface;
-use App\Http\Models\User;
 
 class ReadRepository implements ReadRepositoryInterface
  {
@@ -84,9 +83,13 @@ class ReadRepository implements ReadRepositoryInterface
             return $this->model->select()->where($getWhereId)->with($relation)->get();
         }
 
+        public function getSelectedWithRelation(array $selected , array $relation) {
+            return $this->model->select($selected)->with($relation)->get();
+        }
+
 
     // build your custom query
-    public function getRecordsByCustomQuery( array | string $selectedColumn = "*" , $conditions =[] , $with = [] , $orderBy = [] ,  $dateConditions =[]){
+        public function getRecordsByCustomQuery( array | string $selectedColumn = "*" , $conditions =[] , $with = [] , $orderBy = [] ,  $dateConditions =[]){
 
         $query = $this->model->select($selectedColumn);
 
@@ -117,6 +120,10 @@ class ReadRepository implements ReadRepositoryInterface
             return $records? $records : null;
     }
 
+    public function getRecordsByConditions( $columns , $conditions) {
+        $records = $this->model::select( $columns )->where($conditions)->get();
+        return $records? $records : null;
+}
 
     public function getAlreadyExistsFeaturesInCompany($companyId , $features){
         $query = $this->model->where('companyId',$companyId)

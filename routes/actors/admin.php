@@ -1,11 +1,14 @@
 <?php
 
+use App\Events\SeatAvailable;
+use App\Events\NewMessageSent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Requests\publicRequests\LoginByEmailRequest;
 use App\Http\Controllers\AdminControllers\AdminLoginController;
 use App\Http\Controllers\UserControllers\ShowCompanyController;
 use App\Http\Controllers\AdminControllers\RegisterAdminController;
 use App\Http\Controllers\AdminControllers\CompanyManagement\AddCompanyController;
+use App\Http\Controllers\AdminControllers\CompanyManagement\ViewCompanyController;
 use App\Http\Controllers\AdminControllers\CompanyManagement\DeleteCompanyController;
 use App\Http\Controllers\AdminControllers\CompanyManagement\UpdateCompanyController;
 use App\Http\Controllers\AdminControllers\PullmanTypeManagement\AddPullmanTypeController;
@@ -23,7 +26,7 @@ use App\Http\Controllers\AdminControllers\PullmanTypeManagement\AddPullmanTypeCo
 
 
 Route::post('login', function( LoginByEmailRequest $request){
-    
+
     $result = (new AdminLoginController)->__invoke( $request);
     return $result  ;
 
@@ -38,9 +41,9 @@ Route::post('login', function( LoginByEmailRequest $request){
     Route::post('add',AddCompanyController::class);
     Route::post('delete',DeleteCompanyController::class);
     Route::post('update',UpdateCompanyController::class);
-
 });
- Route::get("view/companies",ShowCompanyController::class);
+
+ Route::get("view/companies",ViewCompanyController::class);
 
 
  Route::prefix('pullmanType')->group(function () {
@@ -48,3 +51,9 @@ Route::post('login', function( LoginByEmailRequest $request){
     // Route::post('delete',::class);
     // Route::post('update',::class);
 });
+
+Route::get('sent_notification',function(){
+
+    broadcast(new SeatAvailable('hi'))->toOthers();
+});
+

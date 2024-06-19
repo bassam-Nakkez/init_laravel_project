@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Models\Role;
 use App\Http\Models\User;
 
 return [
@@ -47,6 +48,11 @@ return [
             'driver' => 'passport',
             'provider' => 'users',
         ],
+
+        'other' => [
+            'driver' => 'passport',
+            'provider' => 'role',
+        ],
     ],
 
     /*
@@ -70,6 +76,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => User::class,
+        ],
+
+        'role' => [
+            'driver' => 'eloquent',
+            'model' => Role::class,
         ],
 
         // 'users' => [

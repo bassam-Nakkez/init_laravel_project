@@ -1,5 +1,6 @@
 <?php
-namespace App\BusinessLogic\UseCases\UserActor\ShowCompanyUseCase;
+namespace App\BusinessLogic\UseCases\CompanyActor\FeaturesManagement\ViewFeaturesUseCase;
+
 
 use App\BusinessLogic\Interfaces\Result;
 use App\BusinessLogic\Core\Options\EntityType;
@@ -8,10 +9,13 @@ use App\BusinessLogic\Interfaces\ServicesInterfaces\ServicesInterface;
 use App\BusinessLogic\Interfaces\PresentersInterfaces\PresenterInterface;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
 
-class ShowCompanyLogic implements UseCase
+class ViewFeaturesLogic implements UseCase
 {
 
     public function __construct(
+        //---------------------------------------------------------------------------------------
+        private ViewFeatureInput $input,  /*| Pass Request To Service*/
+        //---------------------------------------------------------------------------------------
         private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork 
         private PresenterInterface $output,          // for present output to Views ---- Views
         private ServicesInterface $service           // frameWork services
@@ -21,16 +25,14 @@ class ShowCompanyLogic implements UseCase
     public function execute() : Result { 
         
    
-        $this->repository->buildRepositoryModel(EntityType::Company , []);
+        $this->repository->buildRepositoryModel(EntityType::Feature , []);
 
-        $columns = ['companyId',"name","logo","aboutAs" ];
+        $columns = ['featureId',"feature"];
 
             $data = $this->repository->readRepository()
-            ->getSelectedWithRelation( $columns ,['images']);
-           //->getRecordsByCustomQuery($columns ,[],['images']);
+            ->getRecordsByConditions( $columns , ['companyId'=>$this->input->getCompanyId()]);
 
-
-            return $this->output->sendSuccess( $data , 'get all companies');
+            return $this->output->sendSuccess( $data , 'get all Features');
     }
 }
     

@@ -37,6 +37,8 @@ class CreateTravelLogic implements UseCase {
         // $travelInformation['periodName'] = ;
         $travelInformation['numOfSeatsBooking'] = 0;
         $travelInformation['numOfSeats'] = $pullmanInformation['numOfSeats'];
+        $travelInformation['seatNumbers'] = json_encode(array_fill(0,47,0));
+
         $travelInformation['day'] = $this->service->DateServices()->getDayName($this->input->getDate() , 'Y-m-d');
 
        // $this->service->SqlServices()->startTransaction(); // begin transaction..

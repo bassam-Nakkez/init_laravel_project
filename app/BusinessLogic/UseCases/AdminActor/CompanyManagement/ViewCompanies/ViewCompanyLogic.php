@@ -1,5 +1,5 @@
 <?php
-namespace App\BusinessLogic\UseCases\UserActor\ShowCompanyUseCase;
+namespace App\BusinessLogic\UseCases\AdminActor\CompanyManagement\ViewCompanies;
 
 use App\BusinessLogic\Interfaces\Result;
 use App\BusinessLogic\Core\Options\EntityType;
@@ -8,7 +8,7 @@ use App\BusinessLogic\Interfaces\ServicesInterfaces\ServicesInterface;
 use App\BusinessLogic\Interfaces\PresentersInterfaces\PresenterInterface;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
 
-class ShowCompanyLogic implements UseCase
+class ViewCompanyLogic implements UseCase
 {
 
     public function __construct(
@@ -23,10 +23,10 @@ class ShowCompanyLogic implements UseCase
    
         $this->repository->buildRepositoryModel(EntityType::Company , []);
 
-        $columns = ['companyId',"name","logo","aboutAs" ];
+        $columns = ['companyId',"name","logo"];
 
             $data = $this->repository->readRepository()
-            ->getSelectedWithRelation( $columns ,['images']);
+            ->getSelectedWithRelation( $columns ,[ 'role']);
            //->getRecordsByCustomQuery($columns ,[],['images']);
 
 

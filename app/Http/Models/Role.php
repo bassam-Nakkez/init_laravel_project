@@ -45,6 +45,7 @@ class Role extends Authenticatable  implements RoleEntity
         "type",
         "email_verified_at",
         'remember_token',
+        "authId"
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -57,5 +58,11 @@ class Role extends Authenticatable  implements RoleEntity
         "email_verified_at",
     ];
 
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+    
 
 }

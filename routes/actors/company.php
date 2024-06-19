@@ -5,10 +5,13 @@ use App\Http\Controllers\CompanyControllers\AddEmployeeController;
 use App\Http\Controllers\CompanyControllers\CompanyLoginController;
 use App\Http\Controllers\CompanyControllers\CreateProgramController;
 use App\Http\Controllers\CompanyControllers\PostsManagement\CreatePostController;
+use App\Http\Controllers\CompanyControllers\SeriesManagement\ViewSeriesController;
 use App\Http\Controllers\CompanyControllers\SeriesManagement\CreateSeriesController;
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\AddStationController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\AddFeatureController;
+use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\ViewTravelsController;
 use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\CreateTravelController;
+use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\ViewFeaturesController;
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\DeleteStationController;
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\UpdateStationController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\DeleteFeatureController;
@@ -47,6 +50,9 @@ Route::post('login',CompanyLoginController::class);
 
 Route::prefix('travel')->group(function () {
     Route::post('create',CreateTravelController::class);
+    Route::get('view',ViewTravelsController::class);
+
+    
 
 });
 
@@ -65,13 +71,15 @@ Route::prefix('feature')->group(function () {
     Route::post('add',AddFeatureController::class);
     Route::post('delete',DeleteFeatureController::class);
     Route::post('update',UpdateFeatureController::class);
+    Route::Get('view',ViewFeaturesController::class);
+
 });
 
 //---------------------- Series Management -----------------------
 
 Route::prefix('series')->group(function () {
     Route::post('create',CreateSeriesController::class);
-
+    Route::Get('view',ViewSeriesController::class);
 });
 
 //---------------------- Posts Management -----------------------

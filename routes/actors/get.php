@@ -4,6 +4,7 @@ use App\Events\TestEvent;
 use App\Events\bookingNotification;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetControllers\GetCitiesController;
+use App\Http\Controllers\GetControllers\GetTravelsSelectorsController;
 use App\Http\Controllers\GetControllers\GetSelectorFilterTravelController;
 
 /*
@@ -22,6 +23,7 @@ Route::get('test',function(){
 })->middleware("myCros");
 
 Route::get('cities',GetCitiesController::class);
+
 Route::get("searchTravel/filters/selectors",GetSelectorFilterTravelController::class);
 
 Route::get('send',function(){
@@ -29,3 +31,9 @@ Route::get('send',function(){
     event(new TestEvent(" Hi bassam! ")) ;
     return"success" ;
 });
+
+
+
+Route::get('getTravelSelector',GetTravelsSelectorsController::class);
+
+

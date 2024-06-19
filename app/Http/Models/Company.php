@@ -92,6 +92,18 @@ class Company extends Authenticatable implements CompanyEntity
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+
+    /**
+     * Get the user associated with the Company
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     **/
+    
+    public function role()
+    {
+        return $this->hasOne(Role::class, 'authId');
+    }
 
     /**
      * Get all of the travels for the Company

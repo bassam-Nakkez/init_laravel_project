@@ -21,6 +21,7 @@ interface ReadRepositoryInterface{
 
     //get records by set of values
     public function getRecordsByValues( $columnName, $values) ;
+    public function getRecordsByConditions( $columns , $conditions);
 
     public function getRecordsByCustomQuery( array | string $selectedColumn = "*"  , $conditions =[] , $with = [] , $orderBy = [] , $dateConditions = [] );
 
@@ -36,4 +37,6 @@ interface ReadRepositoryInterface{
     public function getUserTravel($data);
 
     public function getCompanyTravel($data);
+
+    public function getSelectedWithRelation(array $selected , array $relation);
 }

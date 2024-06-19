@@ -83,7 +83,6 @@ public function getTo(){
 
 public function toArray() :array {
     return [
-
         "companyId" => $this->companyId,
         "from" => $this->from,
         "to" => $this->to,
@@ -94,7 +93,6 @@ public function toArray() :array {
         'timeToLeave'=>$this->timeToLeave,
         'price'=>$this->price,
         'seriesId' => $this->seriesId,
-
     ];
 }
 
