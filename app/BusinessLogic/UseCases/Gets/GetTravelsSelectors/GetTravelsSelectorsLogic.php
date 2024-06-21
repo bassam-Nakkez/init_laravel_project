@@ -29,7 +29,7 @@ class GetTravelsSelectorsLogic implements UseCase
 
         $columns = ['seriesId',"seriesName"];
 
-          $data['series'] = $this->repository->readRepository()
+          $data['seriesOptions'] = $this->repository->readRepository()
             ->getRecordsByConditions( $columns , ['companyId'=>$this->input->getCompanyId()]);
 
     // -------------- get features ------------------
@@ -37,7 +37,7 @@ class GetTravelsSelectorsLogic implements UseCase
 
             $columns = ['featureId',"feature"];
     
-            $data['Features']  = $this->repository->readRepository()
+            $data['FeatureOptions']  = $this->repository->readRepository()
                 ->getRecordsByConditions( $columns , ['companyId'=>$this->input->getCompanyId()]);
     
     // -------------- get cities ------------------
@@ -48,20 +48,23 @@ class GetTravelsSelectorsLogic implements UseCase
         ['countryId','=', $this->input->getCountry()]
     ];
     
-    $data['cities']  = $this->repository->readRepository()->getRecordsByCustomQuery(['cityId',"name"] ,$conditions   );
-
+    $data['fromOptions']  = $this->repository->readRepository()->getRecordsByCustomQuery(['cityId',"name"] ,$conditions   );
+    $data['toOptions'] = $data['fromOptions'];
     // -------------- get cities ------------------
 
     $this->repository->buildRepositoryModel(EntityType::PullmanDescription , []);
       
    
     
-    $data['PullmanType']  = $this->repository->readRepository()->getAllBySelected(['pullmanDescriptionId','type']);  
+    $data['PullmanOptions']  = $this->repository->readRepository()->getAllBySelected(['pullmanDescriptionId','type']);  
 
     
     // -------------- return data ------------------     
        
-            return $this->output->sendSuccess( $data , 'get all travel selector');
+    $succ = Array();
+    array_push($succ ,  $data  );
+
+            return $this->output->sendSuccess( $succ , 'get all travel selector');
     }
 }
     

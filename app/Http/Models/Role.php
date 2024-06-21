@@ -61,7 +61,7 @@ class Role extends Authenticatable  implements RoleEntity
 
     public function company()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class ,'authId','authId');
     }
     
 

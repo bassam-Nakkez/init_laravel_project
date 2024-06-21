@@ -16,15 +16,18 @@ class ViewTravelsLogic implements UseCase
         //---------------------------------------------------------------------------------------
         private ViewTravelsInput $input,  /*| Pass Request To Service*/
         //---------------------------------------------------------------------------------------
-        private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork 
+        private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork
         private PresenterInterface $output,          // for present output to Views ---- Views
         private ServicesInterface $service           // frameWork services
     ){}
-    
-     
-    public function execute() : Result { 
-        
-   
+
+
+    public function execute() : Result {
+
+        // $this->repository->buildRepositoryModel(EntityType::Company , []);
+
+        // $company = $this->repository->readRepository()->getFirstModelByValue( constent::$AuthID , $this->input->getAuthId() );
+
         $this->repository->buildRepositoryModel(EntityType::Travel , []);
 
         $columns = [
@@ -35,11 +38,9 @@ class ViewTravelsLogic implements UseCase
             "price",
             "isVIP",
         ];
-
             $travels = $this->repository->readRepository()
             ->getRecordsByConditions( $columns , ['companyId'=>$this->input->getCompanyId()]);
 
             return $this->output->sendSuccess( $travels , 'get all travels');
     }
 }
-    

@@ -26,16 +26,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
+       $this->registerPolicies();
+       Passport::routes();
 
-        // added by me for cors
-        
-        // Route::prefix('api')->group(function () {
-        //     Passport::routes();
-        // });
-
-        //
-
-        //
     }
 }

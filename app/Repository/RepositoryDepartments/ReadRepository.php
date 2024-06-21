@@ -39,6 +39,8 @@ class ReadRepository implements ReadRepositoryInterface
         return $this->model->select($selected)->get();
     }
 
+
+
     public function getById($id) {
         return $this->model->findOrFail($id);
     }
@@ -124,6 +126,13 @@ class ReadRepository implements ReadRepositoryInterface
         $records = $this->model::select( $columns )->where($conditions)->get();
         return $records? $records : null;
 }
+
+public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) {
+    $records = $this->model::select( $columns )->where($conditions)->paginate($paginateNumber);
+    return $records? $records : null;
+}
+
+
 
     public function getAlreadyExistsFeaturesInCompany($companyId , $features){
         $query = $this->model->where('companyId',$companyId)

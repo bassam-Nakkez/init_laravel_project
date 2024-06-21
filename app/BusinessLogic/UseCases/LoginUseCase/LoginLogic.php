@@ -16,28 +16,28 @@ use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
 
 class LoginLogic implements UseCase {
 
-    
 
-    
+
+
 public function __construct(
     //---------------------------------------------------------------------------------------
     private LoginInput $input,  /*| Pass Request To Service*/
     //---------------------------------------------------------------------------------------
-    private BaseRepositoryInterface $repository ,   // for use FrameWork from business logic ---- frameWork 
+    private BaseRepositoryInterface $repository ,   // for use FrameWork from business logic ---- frameWork
     private PresenterInterface $output ,       // for present output to Views ---- Views
     private ServicesInterface $service           // frameWork services
  ){}
 
- 
+
 public function execute() : Result {
-    
+
     // create model
     $this->repository->buildRepositoryModel(EntityType::Auth ,[]);
     $authInfo = $this->repository->readRepository()->getFirstModelByValue(Constent::$EMAIL , $this->input->getEmail());
-    
+
 
     // return $admin->admin->
-    if($authInfo instanceof RoleEntity ){ 
+    if($authInfo instanceof RoleEntity ){
 
     //compare password
     if(!$this->service->checkPassword([
@@ -47,15 +47,15 @@ public function execute() : Result {
 
     // create token
     $token = $this->service->getToken($authInfo);
-    
+
     $type = [ EntityType::Admin  , EntityType::Company , EntityType::Employee ];
-    
+
     $this->repository->buildRepositoryModel($type[$authInfo->type],[]);
-    
+
     $entity = $this->repository->readRepository()->getFirstModelByValue(constent::$AuthID , $authInfo->authId );
-    $entity ['token'] = $token; 
-    $entity ['role'] = $authInfo->type; 
-    
+     $entity ['token'] = $token;
+     $entity ['role'] = $authInfo->type;
+
   // return success response
     return $this->output->sendSuccess(
         (new LoginOutput($entity ))->getDataAsObject(),

@@ -33,7 +33,8 @@ Route::get('send',function(){
 });
 
 
+Route::middleware('changeHeaderName','auth:other')->group(function () {
 
 Route::get('getTravelSelector',GetTravelsSelectorsController::class);
 
-
+});

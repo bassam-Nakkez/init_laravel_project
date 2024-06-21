@@ -29,9 +29,14 @@ use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\Update
 */
 
 
+// $admin = Auth::guard('admin')->user();
+// $token = $admin->createToken('AdminToken', ['admin'])->accessToken;
+
+
 Route::post('login',CompanyLoginController::class);
 
 
+Route::middleware('changeHeaderName','auth:other')->group(function () {
 
 
  //---------------------- Employees Management -----------------------
@@ -89,3 +94,4 @@ Route::prefix('post')->group(function () {
 
 });
 
+});

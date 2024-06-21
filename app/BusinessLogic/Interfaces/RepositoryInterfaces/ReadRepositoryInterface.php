@@ -39,4 +39,6 @@ interface ReadRepositoryInterface{
     public function getCompanyTravel($data);
 
     public function getSelectedWithRelation(array $selected , array $relation);
+
+    public function getRecordsByPaginate( $columns , $conditions , $paginateNumber);
 }

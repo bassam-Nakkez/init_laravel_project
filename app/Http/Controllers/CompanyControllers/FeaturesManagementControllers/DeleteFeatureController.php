@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\CompanyControllers\FeaturesManagementControllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Services\Services;
 use Illuminate\Http\Request;
@@ -14,11 +15,16 @@ class DeleteFeatureController extends Controller
 {
        public function __invoke( Request  $request )
         {
+
+            $company = Auth::guard('other')->user()->company;
+            $input = $request->all();
+            $input['companyId'] = $company->companyId;
+
             return $this->applyAspect(
     
             //--------------------Functional Service ------------------------------------
     
-            new DeleteFeatureLogic(new DeleteFeatureInput($request->all()) ,
+            new DeleteFeatureLogic(new DeleteFeatureInput($input) ,
             new BaseRepository ,
             new JsonResponsePresenter,
             new Services),

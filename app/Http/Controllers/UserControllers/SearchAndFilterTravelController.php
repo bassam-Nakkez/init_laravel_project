@@ -20,15 +20,6 @@ class SearchAndFilterTravelController extends Controller
         public function __invoke( Request  $request )
         {
 
-            // $stationId = 21;
-            // $subQuery = SeriesStation::select('seriesId')->where('stationId',$stationId)->get();
-            // $data = Travel::whereIn('seriesId',$subQuery)->get(); 
-  
-
-            // $subQuery = SeriesStation::select('seriesId')->where('stationId',4)->get();
-            // return response()->json($subQuery);
-
-
             return $this->applyAspect(
 
             //--------------------Functional Service ------------------------------------
