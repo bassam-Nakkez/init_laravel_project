@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\EmployeeControllers\EmployeeLoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeControllers\EmployeeLoginController;
 
 
 /*

@@ -1,19 +1,15 @@
 <?php
-
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 class SeatAvailable implements ShouldBroadcastNow
 {
-    
+
     use Dispatchable, InteractsWithSockets, SerializesModels;
     /**
      * Create a new event instance.
@@ -32,19 +28,17 @@ class SeatAvailable implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('newChannel');
-
-
+        return new Channel('Notification');
     }
 
     public function broadcastAs(){
-        return 'SeatAvailable';
+        return 'company-added';
     }
 
     public function broadcastWith():Array {
         return [
-            'title' => 'مقعد جديد متاح',
-            'message'=> ' مرحباً يوجد مقعد جديد متاح'
+            'title' => 'تم اضافة شركة جديدة',
+            'message'=> "يا برينس"
         ];
     }
 }

@@ -29,6 +29,10 @@ class ErrorMessage
     static $unfollowFiled = "عملية الغاء متابعة الشرمة فشلت ";
     static $filedGetTravelMatrix = " يوجد خطأ الرجاء اعادة المحاولة  ";
     static $someThingWentWrong = "حدث خطأ ما ";
+    static $AlreadyReservation = "تم حجز المقعد مسبقا الرجاء اعادة المحاولة";
+    static $WrongReservation = "يوجد خطأ في اضافة الحجز الرجاء اعادة المحاولة";
+    static $ReservationSuccessfully = 'تم الـحـجـز بـنجـاح';
+
 
 
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Repository\RepositoryDepartments;
 
+use Carbon\Carbon;
 use App\Http\Models\Station;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\ReadRepositoryInterface;
 
@@ -154,4 +155,51 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
     public function getCompanyTravel($data){
         return $this->model->where('travelDate',">=",$data['date'])->where("companyId","=",$data['companyId'])->with('company')->get();
     }
+
+
+     
+    // View travels in Company 
+    public function getTravelsByFiltersWithExpired(
+        $selectFromTravel  ,$conditionsValues , $expired )
+        {
+            $query = $this->model->select($selectFromTravel)->where('companyId', $conditionsValues['companyId'] )
+            ->where('from','like',$conditionsValues['from'])
+            ->where('to','like',$conditionsValues['to']);
+            $today = Carbon::today();
+            $now = Carbon::now();
+
+
+            if (($expired && $today->gt($conditionsValues['travelDate'])) || ( !$expired && $today->lt($conditionsValues['travelDate']) ) ) 
+            {
+                $query->whereDate('travelDate',$conditionsValues['travelDate']);
+            }
+            elseif(!$expired && $conditionsValues['travelDate'] === date('Y-m-d') )
+            {
+                $query->whereDate('travelDate',$conditionsValues['travelDate'])
+                ->where('timeToLeave', '>', $now );
+            }
+            elseif( $expired && $conditionsValues['travelDate'] === date('Y-m-d'))
+            {
+                $query->whereDate('travelDate',$conditionsValues['travelDate'])
+                ->where('timeToLeave', '<',  $now );
+            }
+
+
+            if(isset($conditionsValues['isVIP'])) $query->where('isVIP',$conditionsValues['isVIP']);
+
+            if(isset($conditionsValues['stationId'])){
+                $id = $conditionsValues['stationId'];
+
+                if( Station::select('seriesId')->where('stationId',$id)->exists())
+                {
+                    $subQuery = Station::select('seriesId')->where('stationId',$id)->get();
+
+                }
+                else {  $subQuery = [0]; }
+                $query->whereIn('seriesId',$subQuery);
+            }
+        // if(isset($orderByColumns['price'])) $query->orderBy('price');
+        // $query->orderBy('recommendation', 'desc');
+        return $query->get();
+        }
 }

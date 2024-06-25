@@ -54,7 +54,7 @@ public function execute() : Result {
 
 // return Success response
     return $this->output->sendSuccess((  new LoginUserOutput($user))->getOutputAsArray(),
-        SuccessMessage::$loginSuccessfull );
+        SuccessMessage::$loginSuccessfully );
     }
 
     return $this->output->sendFailed(null,ErrorMessage::$AccountNotFound);

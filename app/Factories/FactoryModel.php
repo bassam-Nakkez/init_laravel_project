@@ -13,6 +13,7 @@ use App\Http\Models\Company;
 use App\Http\Models\Feature;
 use App\Http\Models\Station;
 use App\Http\Models\Employee;
+use App\Http\Models\Passenger;
 use App\Http\Models\Recommand;
 use App\Http\Models\Subscribe;
 use App\Http\Models\AuthEntity;
@@ -51,6 +52,7 @@ class FactoryModel
             'reservation'           =>(new Reservation($data)),
             'subscribe'             =>(new Subscribe($data)),
             'auth'                  =>(new Role($data)),
+            'passenger'             =>(new Passenger($data)),
         ];
 
         return $model[$type->value];

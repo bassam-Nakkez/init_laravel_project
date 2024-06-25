@@ -19,7 +19,7 @@ class ViewTravelsController extends Controller
         $company = Auth::guard('other')->user()->company;
         $input = $request->all();
         $input['companyId'] = $company->companyId;
-        
+
         return $this->applyAspect(
 
         //--------------------Functional Service ------------------------------------

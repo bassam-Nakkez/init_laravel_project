@@ -4,7 +4,6 @@ namespace App\BusinessLogic\UseCases\UserActor\GetHistoryCurrentTravelUseCase;
 use App\BusinessLogic\Interfaces\Result;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Core\InternalInterface\UseCase;
-use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
 use App\BusinessLogic\Interfaces\PresentersInterfaces\PresenterInterface;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
 

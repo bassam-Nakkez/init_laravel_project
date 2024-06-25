@@ -48,8 +48,8 @@ class GetMatrixAlogrithm {
     }
 
     return [
-        "maleMatrix" => $male,
-        "femaleMatrix" => $female,
+        "maleMatrix" => $female,
+        "femaleMatrix" => $male ,
     ];
 
 }

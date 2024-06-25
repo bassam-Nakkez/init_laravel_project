@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\UserControllers;
 
-use Illuminate\Http\Request;
 use App\Repository\BaseRepository;
 use App\Http\Controllers\Controller;
 use App\Adapters\presenters\JsonResponsePresenter;

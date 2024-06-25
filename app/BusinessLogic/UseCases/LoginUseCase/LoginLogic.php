@@ -5,7 +5,6 @@ use App\BusinessLogic\Core\Constent;
 use App\BusinessLogic\Interfaces\Result;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Core\InternalInterface\UseCase;
-use App\BusinessLogic\Interfaces\EntityInterfaces\AuthEntity;
 use App\BusinessLogic\Interfaces\EntityInterfaces\RoleEntity;
 use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
 use App\BusinessLogic\Core\Messages\ResponseMessages\SuccessMessage;
@@ -35,33 +34,30 @@ public function execute() : Result {
     $this->repository->buildRepositoryModel(EntityType::Auth ,[]);
     $authInfo = $this->repository->readRepository()->getFirstModelByValue(Constent::$EMAIL , $this->input->getEmail());
 
-
-    // return $admin->admin->
     if($authInfo instanceof RoleEntity ){
 
     //compare password
     if(!$this->service->checkPassword([
         "password"       => $this->input->getPassword(),
         "hashedPassword" => $authInfo->getPassword()
-    ]))return $this->output->sendFailed(null,ValidationMessage::$IncorrectPassword);
+    ])) return $this->output->sendFailed(null,ValidationMessage::$IncorrectPassword);
 
     // create token
     $token = $this->service->getToken($authInfo);
 
-    $type = [ EntityType::Admin  , EntityType::Company , EntityType::Employee ];
-
-    $this->repository->buildRepositoryModel($type[$authInfo->type],[]);
-
-    $entity = $this->repository->readRepository()->getFirstModelByValue(constent::$AuthID , $authInfo->authId );
-     $entity ['token'] = $token;
-     $entity ['role'] = $authInfo->type;
+    // Entity Type..
+    $type = [ $authInfo->admin  , $authInfo->company , $authInfo->employee ];
+    
+    $entity = $type[$authInfo->type -  1 ];
+    $entity ['role'] = $authInfo->type;
+    $entity ['token'] = $token;
 
   // return success response
     return $this->output->sendSuccess(
         (new LoginOutput($entity ))->getDataAsObject(),
-       SuccessMessage::$loginSuccessfull
+       SuccessMessage::$loginSuccessfully
         );
-    }
+}
     return $this->output->sendFailed(null,ErrorMessage::$AccountNotFound);
   }
 

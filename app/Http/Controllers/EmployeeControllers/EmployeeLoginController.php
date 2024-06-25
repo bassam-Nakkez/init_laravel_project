@@ -1,19 +1,20 @@
 <?php
 namespace App\Http\Controllers\EmployeeControllers;
 
-use App\Adapters\presenters\JsonResponsePresenter;
+use App\Services\Services;
+use App\Repository\BaseRepository;
 use App\Http\Controllers\Controller;
+use App\Adapters\presenters\JsonResponsePresenter;
+use App\Http\Requests\publicRequests\LoginByEmailRequest;
+use App\Http\Requests\publicRequests\LoginByPhoneNumberRequest;
 use App\BusinessLogic\UseCases\EmployeeActor\LoginEmployeeUseCase\LoginEmployeeInput;
 use App\BusinessLogic\UseCases\EmployeeActor\LoginEmployeeUseCase\LoginEmployeeLogic;
-use App\Http\Requests\publicRequests\LoginByPhoneNumberRequest;
-use App\Repository\BaseRepository;
-use App\Services\Services;
 
 class EmployeeLoginController extends Controller
 {
 
 
-    public function __invoke( LoginByPhoneNumberRequest $request )
+    public function __invoke( LoginByEmailRequest $request )
     {
 
        return $this->applyAspect(

@@ -9,9 +9,6 @@ class ViewTravelsInput implements RequestModel{
     private string $authId;
     public function __construct( $input )
     {
-
-
-
          $this->companyId   = $input['companyId'] ;
 
     }

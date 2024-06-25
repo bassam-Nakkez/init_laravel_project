@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -18,4 +19,23 @@ class Authenticate extends Middleware
             return response('Unauthorized.', 401);
         }
     }
+
+
+    protected function authenticate($request, array $guards)
+    {
+        if (empty($guards)) {
+              return $this->auth->authenticate();
+     }
+
+    foreach ($guards as $guard) {
+        if ($this->auth->guard($guard)->check()) {
+            return $this->auth->shouldUse($guard);
+        }
+    }
+
+    throw new AuthenticationException('Unauthenticated.', $guards);
+}
+
+
+    
 }

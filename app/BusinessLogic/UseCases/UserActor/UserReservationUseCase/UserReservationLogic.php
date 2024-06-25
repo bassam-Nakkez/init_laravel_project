@@ -1,16 +1,13 @@
 <?php
 namespace App\BusinessLogic\UseCases\UserActor\UserReservationUseCase;
 
-
 use App\BusinessLogic\Interfaces\Result;
+use App\BusinessLogic\Core\Options\Gender;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Core\InternalInterface\UseCase;
 use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
-use App\BusinessLogic\Core\Options\GenderEnum;
 use App\BusinessLogic\Interfaces\PresentersInterfaces\PresenterInterface;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
-use App\BusinessLogic\UseCases\UserActor\GetTravelMatrixUseCase\logic\GetMatrixAlogrithm;
-use Exception;
 
 class UserReservationLogic implements UseCase {
 
@@ -38,7 +35,7 @@ class UserReservationLogic implements UseCase {
 
         foreach ($this->input->getMatrix() as $value) {
             if ($matrix[$value["seteIndex"]] != 0 ) {
-                throw new Exception("تم حجز المقعد مسبقا الرجاء اعادة المحاولة");
+                return $this->output->sendFailed(null , ErrorMessage::$AlreadyReservation);
             }
 
             $reservation = $this->reservationrepository->createRepository()->create([
@@ -50,10 +47,9 @@ class UserReservationLogic implements UseCase {
             ]);
 
             if (!$reservation) {
-                throw new Exception("يوجد خطأ في اضافة الحجز الرجاء اعادة المحاولة");
-            }
+                return $this->output->sendFailed(null , ErrorMessage::$WrongReservation);            }
 
-            if($value["gendor"] == GenderEnum::male->value)
+            if($value["gendor"] == Gender::male->value)
             {
                 $matrix[$value["seteIndex"]] = 2;
             }
@@ -66,7 +62,7 @@ class UserReservationLogic implements UseCase {
 
         $travel->save();
 
-        return $this->output->sendSuccess((new UserReservationOutput(true))->getOutputAsArray() , 'Success');
+        return $this->output->sendSuccess((new UserReservationOutput(true))->getOutputAsArray() , ErrorMessage::$ReservationSuccessfully);
 
     }
 }

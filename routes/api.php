@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Broadcast;
+use App\Http\Controllers\ImageUploadController;
 
 
 /*
@@ -15,11 +16,13 @@ use Illuminate\Support\Facades\Broadcast;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Broadcast::routes(['middleware' => ['auth:other']]);
 
 
+Broadcast::routes(['middleware' => ['changeHeaderName','auth:other']]);
+Route::post('/upload', ImageUploadController::class);
 
-Broadcast::routes(['middleware' => ['auth:sanctum']]);
+
+
+// api/broadcasting/auth 
+

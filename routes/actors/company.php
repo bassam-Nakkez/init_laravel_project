@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyControllers\AddEmployeeController;
 use App\Http\Controllers\CompanyControllers\CompanyLoginController;
 use App\Http\Controllers\CompanyControllers\CreateProgramController;
+use App\Http\Controllers\UserControllers\ShowTravelDetailsControllers;
+use App\Http\Controllers\CompanyControllers\PostsManagement\ViewPostsController;
 use App\Http\Controllers\CompanyControllers\PostsManagement\CreatePostController;
+use App\Http\Controllers\CompanyControllers\PostsManagement\DeletePostController;
+
+use App\Http\Controllers\CompanyControllers\PostsManagement\UpdatePostController;
 use App\Http\Controllers\CompanyControllers\SeriesManagement\ViewSeriesController;
 use App\Http\Controllers\CompanyControllers\SeriesManagement\CreateSeriesController;
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\AddStationController;
@@ -16,6 +21,9 @@ use App\Http\Controllers\CompanyControllers\StationManagementControllers\DeleteS
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\UpdateStationController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\DeleteFeatureController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\UpdateFeatureController;
+use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\GetTravelsByFiltersControllers;
+use App\Http\Controllers\CompanyControllers\ReservationManagementControllers\CompanyReservationController;
+use App\Http\Controllers\CompanyControllers\ReservationManagementControllers\GetTravelMatrixWebController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +64,9 @@ Route::middleware('changeHeaderName','auth:other')->group(function () {
 Route::prefix('travel')->group(function () {
     Route::post('create',CreateTravelController::class);
     Route::get('view',ViewTravelsController::class);
+    Route::get('GetTravelsByFilters',GetTravelsByFiltersControllers::class);
+
+    
 
     
 
@@ -91,6 +102,24 @@ Route::prefix('series')->group(function () {
 
 Route::prefix('post')->group(function () {
     Route::post('create',CreatePostController::class);
+    Route::get('view',ViewPostsController::class);
+    Route::post('delete',DeletePostController::class);
+    Route::post('update',UpdatePostController::class);
+
+});
+
+//---------------------- Reservation Management -----------------------
+
+Route::prefix('reservation')->group(function () {
+    Route::post('create',CompanyReservationController::class);
+});
+
+
+//---------------------- Getters -----------------------
+
+Route::prefix('get')->group(function () {
+    Route::get('travel/details',ShowTravelDetailsControllers::class);
+    Route::get('travel/matrix',GetTravelMatrixWebController::class);
 
 });
 

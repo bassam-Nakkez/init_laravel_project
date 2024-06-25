@@ -5,16 +5,14 @@ use App\BusinessLogic\Core\InternalInterface\RequestModel;
 
 class LoginEmployeeInput implements RequestModel{
 
+
     private String $email;
     private String $password;
 
   public function __construct(array $data)
   {
-
     $this->setEmail($data['email']);
-
     $this->setPassword($data['password']);
-
   }
 
 
@@ -42,6 +40,4 @@ class LoginEmployeeInput implements RequestModel{
             "password" => $this->password
         ];
   }
-
-
 }

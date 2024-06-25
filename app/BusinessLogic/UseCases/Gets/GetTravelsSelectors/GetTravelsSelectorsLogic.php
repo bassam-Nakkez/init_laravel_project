@@ -21,50 +21,52 @@ class GetTravelsSelectorsLogic implements UseCase
         private ServicesInterface $service           // frameWork services
     ){}
     
-     
-    public function execute() : Result { 
-        
-   // ---------------- get series ----------------
-        $this->repository->buildRepositoryModel(EntityType::Series , []);
-
-        $columns = ['seriesId',"seriesName"];
-
-          $data['seriesOptions'] = $this->repository->readRepository()
-            ->getRecordsByConditions( $columns , ['companyId'=>$this->input->getCompanyId()]);
+     public function execute() : Result {
+    // ---------------- get series ----------------
+    $this->repository->buildRepositoryModel(EntityType::Series, []);
+    $seriesColumns = ['seriesId', 'seriesName'];
+    $seriesOptions = $this->repository->readRepository()
+        ->getRecordsByConditions($seriesColumns, ['companyId' => $this->input->getCompanyId()]);
 
     // -------------- get features ------------------
-            $this->repository->buildRepositoryModel(EntityType::Feature , []);
+    $this->repository->buildRepositoryModel(EntityType::Feature, []);
+    $featureColumns = ['featureId', 'feature'];
+    $featureOptions = $this->repository->readRepository()
+        ->getRecordsByConditions($featureColumns, ['companyId' => $this->input->getCompanyId()]);
 
-            $columns = ['featureId',"feature"];
-    
-            $data['FeatureOptions']  = $this->repository->readRepository()
-                ->getRecordsByConditions( $columns , ['companyId'=>$this->input->getCompanyId()]);
-    
     // -------------- get cities ------------------
-
-    $this->repository->buildRepositoryModel(EntityType::City , []);
-        
-    $conditions = [
-        ['countryId','=', $this->input->getCountry()]
-    ];
-    
-    $data['fromOptions']  = $this->repository->readRepository()->getRecordsByCustomQuery(['cityId',"name"] ,$conditions   );
-    $data['toOptions'] = $data['fromOptions'];
-    // -------------- get cities ------------------
-
-    $this->repository->buildRepositoryModel(EntityType::PullmanDescription , []);
-      
-   
-    
-    $data['PullmanOptions']  = $this->repository->readRepository()->getAllBySelected(['pullmanDescriptionId','type']);  
-
-    
-    // -------------- return data ------------------     
-       
-    $succ = Array();
-    array_push($succ ,  $data  );
-
-            return $this->output->sendSuccess( $succ , 'get all travel selector');
+    $this->repository->buildRepositoryModel(EntityType::City, []);
+    $cityConditions = [['countryId', '=', $this->input->getCountry()]];
+    $cities = $this->repository->readRepository()
+        ->getRecordsByCustomQuery(['cityId', 'name'], $cityConditions);
+    $fromOptions = [];
+    $toOptions = [];
+    foreach ($cities as $city) {
+        $fromOptions[] = [
+            'cityId' => $city->cityId,
+            'name' => $city->name,
+        ];
+        $toOptions[] = [
+            'cityId' => $city->cityId,
+            'name' => $city->name,
+        ];
     }
+
+    // -------------- get pullmans ------------------
+    $this->repository->buildRepositoryModel(EntityType::PullmanDescription, []);
+    $pullmanOptions = $this->repository->readRepository()
+        ->getAllBySelected(['pullmanDescriptionId', 'type']);
+
+    // Structure data as expected by frontend
+    $data = [
+        'seriesOptions' => $seriesOptions,
+        'featureOptions' => $featureOptions,
+        'fromOptions' => $fromOptions,
+        'toOptions' => $toOptions,
+        'pullmanOptions' => $pullmanOptions,
+    ];
+
+    // -------------- return data ------------------
+    return $this->output->sendSuccess($data, 'get all travel selector');
 }
-    
+}

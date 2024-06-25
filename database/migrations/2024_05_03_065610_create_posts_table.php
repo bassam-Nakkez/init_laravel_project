@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePostsTable extends Migration
 {
@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id("postId");
             $table->text("content");
             $table->text("image");
+            $table->integer("likes")->default(0);
             $table->foreignId("companyId")->references("companyId")->on("companies")->cascadeOnDelete();
             $table->timestamps();
         });

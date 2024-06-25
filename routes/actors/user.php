@@ -62,7 +62,6 @@ Route::get("travel/getMatrix",GetTravelMatrixController::class);
 Route::post("reservation",UserReservationController::class);
 
 
-
 Route::group(['prefix' => 'company' ],function (){
 
 Route::post("/follow",CompanyFollowController::class);

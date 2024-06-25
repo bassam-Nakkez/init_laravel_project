@@ -1,8 +1,8 @@
 <?php
 namespace App\BusinessLogic\Core\Options;
 
-enum GenderEnum : String {
+enum Gender: String {
     case male = "ذكر";
-    case female = "أنثى";
+    case female = "انثى";
 }
 
