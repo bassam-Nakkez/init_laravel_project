@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Models;
+
+use Exception;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\BusinessLogic\Interfaces\EntityInterfaces\BaseEntity;
+
+class EmployeeTravail extends Authenticatable implements BaseEntity
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $table = 'employee_travails';
+
+    protected $primaryKey = 'employeeTravelId';
+
+    protected $fillable = [
+        "employeeId",
+        "travelId"
+    ];
+
+    /**
+     * Get all of the travels for the EmployeeTravail
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function travels()
+    {
+        return $this->hasMany(Travel::class, 'travelId', 'travelId');
+    }
+
+}

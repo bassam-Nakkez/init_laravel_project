@@ -21,6 +21,7 @@ use Database\Factories\StationFactory;
 use Database\Factories\SubscribeFactory;
 use Database\Factories\RecommandedFactory;
 use Database\Factories\CompanyImagesFactory;
+use Database\Factories\EmployeeTravelFactory;
 use Database\Factories\Feature_travelFactory;
 use Database\Factories\Series_StationFactory;
 use Database\Factories\PullmanDescriptionFactory;
@@ -52,9 +53,10 @@ class DatabaseSeeder extends Seeder
         (new UserFactory())->count(25)->create();
         (new RecommandedFactory())->count(5)->create();
         (new FollowFactory())->count(3)->create();
-        
 
-     (new AdminFactory())->count(5)->create();
+
+        (new AdminFactory())->count(5)->create();
+        // (new EmployeeTravelFactory())->count(5)->create();
 
 
 

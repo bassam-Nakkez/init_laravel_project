@@ -22,6 +22,7 @@ use App\Http\Models\TravelFeatures;
 use App\Http\Models\PullmanDescription;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Interfaces\EntityInterfaces\BaseEntity;
+use App\Http\Models\EmployeeTravail;
 
 class FactoryModel
 {
@@ -51,6 +52,7 @@ class FactoryModel
             'reservation'           =>(new Reservation($data)),
             'subscribe'             =>(new Subscribe($data)),
             'auth'                  =>(new Role($data)),
+            'employeeTravel'        =>(new EmployeeTravail($data))
         ];
 
         return $model[$type->value];

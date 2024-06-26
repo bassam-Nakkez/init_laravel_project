@@ -154,4 +154,10 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
     public function getCompanyTravel($data){
         return $this->model->where('travelDate',">=",$data['date'])->where("companyId","=",$data['companyId'])->with('company')->get();
     }
+
+    public function getDriverTravel($data){
+        return $this->model->where("employeeId","=",$data['employeeId'])->with('travels',function ($q) use($data) {
+            $q->where('travelDate',"<=",$data['date'])->get();
+        })->get();
+    }
 }
