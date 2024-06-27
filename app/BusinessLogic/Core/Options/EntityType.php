@@ -22,9 +22,7 @@ enum EntityType : String {
     case Subscribe = 'subscribe';
     case Auth = 'auth';
     case Passenger = 'passenger';
-
-
-    
+    case EmployeeTravel = 'employeeTravel';
 
 
 }

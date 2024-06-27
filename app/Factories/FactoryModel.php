@@ -16,10 +16,10 @@ use App\Http\Models\Employee;
 use App\Http\Models\Passenger;
 use App\Http\Models\Recommand;
 use App\Http\Models\Subscribe;
-use App\Http\Models\AuthEntity;
 use App\Http\Models\Reservation;
 use App\Http\Models\TravelStation;
 use App\Http\Models\TravelFeatures;
+use App\Http\Models\EmployeeTravail;
 use App\Http\Models\PullmanDescription;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Interfaces\EntityInterfaces\BaseEntity;
@@ -52,7 +52,9 @@ class FactoryModel
             'reservation'           =>(new Reservation($data)),
             'subscribe'             =>(new Subscribe($data)),
             'auth'                  =>(new Role($data)),
+            'employeeTravel'        =>(new EmployeeTravail($data)),
             'passenger'             =>(new Passenger($data)),
+
         ];
 
         return $model[$type->value];

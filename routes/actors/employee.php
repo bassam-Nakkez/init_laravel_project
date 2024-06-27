@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserControllers\GetComanyTravelController;
 use App\Http\Controllers\EmployeeControllers\EmployeeLoginController;
 
 
@@ -20,7 +21,6 @@ Route::post('login',EmployeeLoginController::class);
 
 
  //-------
-
-
-
- 
+Route::group(["prefix"=>"driver","middleware"=>'auth:other'],function () {
+        Route::get("get/travail",GetComanyTravelController::class);
+});

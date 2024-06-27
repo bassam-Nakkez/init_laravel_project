@@ -24,7 +24,7 @@ class GetComanyTravelRequest extends FormRequest
     public function rules()
     {
         return [
-            'companyId' => ['required','integer','exists:companies,companyId'],
+            // 'companyId' => ['required','integer','exists:companies,companyId'],
         ];
     }
 

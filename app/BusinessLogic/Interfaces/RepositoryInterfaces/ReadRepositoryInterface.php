@@ -41,7 +41,7 @@ interface ReadRepositoryInterface{
     public function getSelectedWithRelation(array $selected , array $relation);
 
     public function getRecordsByPaginate( $columns , $conditions , $paginateNumber);
-
-    public function getTravelsByFiltersWithExpired(
-        $selectFromTravel  ,$conditionsValues , $expired );
+    public function getTravelsByFiltersWithExpired( $selectFromTravel  ,$conditionsValues , $expired );
+    public function getDriverTravel($data);
+    
 }
