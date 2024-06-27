@@ -19,10 +19,11 @@ use App\Http\Controllers\ImageUploadController;
 //Broadcast::routes(['middleware' => ['auth:other']]);
 
 
-Broadcast::routes(['middleware' => ['changeHeaderName','auth:other']]);
+//Broadcast::routes(['middleware' => ['changeHeaderName','auth:other']]);
 Route::post('/upload', ImageUploadController::class);
 
 
 
 // api/broadcasting/auth 
 
+//Broadcast::routes(['middleware' => ['changeHeaderName','auth:sanctum']]);

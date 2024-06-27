@@ -1,15 +1,15 @@
 <?php
 namespace App\Http\Models;
 
-use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
-use App\BusinessLogic\Core\Options\GenderEnum;
-use App\BusinessLogic\Interfaces\EntityInterfaces\UserEntity;
 use Exception;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
+use App\BusinessLogic\Core\Options\Gender;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Hash;
+use App\BusinessLogic\Interfaces\EntityInterfaces\UserEntity;
+use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
 
 class User extends Authenticatable  implements UserEntity
 {
@@ -50,7 +50,7 @@ class User extends Authenticatable  implements UserEntity
     }
 
     public function setGendor($gendor) : void{
-        if($gendor == GenderEnum::female->value || $gendor == GenderEnum::male->value){
+        if($gendor == Gender::female->value || $gendor == Gender::male->value){
             $this->gendor = $gendor;
         }
         else{
@@ -131,8 +131,18 @@ class User extends Authenticatable  implements UserEntity
     {
         return $this->hasMany(Follow::class, 'userId', 'userId');
     }
-
-
+    
+    
+    /**
+     * Get all of the notifications for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notifications()
+    {
+        return $this->hasMany(UserNotification::class, 'userId', 'userId');
+    }
+    
 
 
 

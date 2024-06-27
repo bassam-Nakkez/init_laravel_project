@@ -2,8 +2,6 @@
 namespace App\Services;
 
 use Exception;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 use App\BusinessLogic\Interfaces\ServicesInterfaces\ServicesInterface;
@@ -46,5 +44,12 @@ class Services implements ServicesInterface {
     {
             return (new SqlServices);
     }
+
+    
+    //Fire Event Service 
+    public function FireEventService (): FireEventService
+        {
+                return (new FireEventService);
+        }
     
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserControllers\GetComanyTravelController;
 use App\Http\Controllers\EmployeeControllers\EmployeeLoginController;
+use App\Http\Controllers\EmployeeControllers\DriverControllers\SharePullmanLocationController;
 
 
 /*
@@ -19,6 +20,12 @@ use App\Http\Controllers\EmployeeControllers\EmployeeLoginController;
 
 Route::post('login',EmployeeLoginController::class);
 
+Route::middleware('changeHeaderName','auth:other')->group(function () {
+
+    Route::post('driver/sharePullmanLocation',SharePullmanLocationController::class);
+    
+
+});
 
  //-------
 Route::group(["prefix"=>"driver","middleware"=>'auth:other'],function () {

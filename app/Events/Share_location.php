@@ -15,10 +15,9 @@ class Share_location implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
     
 
-    
-    
     public function __construct(private $log , private $lu)
     {
+        
     }
 
     /**

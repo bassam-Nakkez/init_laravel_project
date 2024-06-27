@@ -21,7 +21,7 @@ class RegisterUserRequest extends FormRequest
 public function messages()
 {
     return [
-        
+
         "phoneNumber.required"      => ValidationMessage::$PhoneRequired,
         "password.required"         => ValidationMessage::$PasswordRequired,
         "firstName.required"        => ValidationMessage::$FirstNameRequired,
@@ -37,7 +37,7 @@ public function messages()
         "personalId.digits"         => "يجب ألا يتجاوز الرقم الوطني العشر خانات",
         "password.min"               => "يجب ان يتجاوز طول كلمة المرور الثمانية احرف",
         "birthDay.date_format" => "التاريخ يجب ان يكون من الشكل يوم-شهر-سنة",
-        "gendor.in" => "الجنس يجب ان يكون ذكر او أنثى",
+        "gendor.in" => "الجنس يجب ان يكون ذكر او انثى",
         "firstName.min" => "يجب ان يتجاوز طول الاسم الثلاثة احرف",
         "firstName.max" => "يجب ان لا يتجاوز طول الاسم 25 حرف",
         "lastName.min" => "يجب ان يتجاوز طول الكنية الثلاثة احرف",
@@ -57,7 +57,7 @@ public function messages()
         return [
             "firstName" => ['required', 'max:25', 'min:3', 'string'],
             "lastName" => ['required', 'max:25', 'min:3', 'string'],
-            "gendor" => ['required', 'string', 'in:ذكر,أنثى'],
+            "gendor" => ['required', 'string', 'in:ذكر,انثى'],
             "personalId" => ['required', 'numeric', 'digits:11'],
             "birthDay" => ['required', 'date_format:Y-m-d', 'string'],
             'phoneNumber' => ['required', 'numeric', 'digits:10','unique:users'],

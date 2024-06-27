@@ -17,7 +17,7 @@ class CreatePassengersTable extends Migration
             $table->id('passengerId');
             $table->string('firstName',25);
             $table->string('lastName',25);
-            $table->enum('gender',['ذكر','انثى']);
+            // $table->enum('gender',['ذكر','انثى']);
             $table->string('phoneNumber',20)->nullable();
             $table->string('personalId',20)->max(11);
             $table->foreignId("travelId")->references("travelId")->on("travels")->cascadeOnDelete();
@@ -28,7 +28,7 @@ class CreatePassengersTable extends Migration
         });
     }
 
-    /**
+    /**npm install --save-dev laravel-echo pusher-js
      * Reverse the migrations.
      *
      * @return void

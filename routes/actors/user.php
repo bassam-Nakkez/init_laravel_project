@@ -11,6 +11,7 @@ use App\Http\Controllers\UserControllers\UserReservationController;
 use App\Http\Controllers\UserControllers\ShowCompanyPostsController;
 use App\Http\Controllers\UserControllers\CompanyRecommendedController;
 use App\Http\Controllers\UserControllers\ShowTravelDetailsControllers;
+use App\Http\Controllers\UserControllers\ViewUserNotificationController;
 use App\Http\Controllers\UserControllers\SearchAndFilterTravelController;
 use App\Http\Controllers\UserControllers\GetHistoryCurrentTravelController;
 
@@ -61,6 +62,7 @@ Route::get("travel/getMatrix",GetTravelMatrixController::class);
 
 Route::post("reservation",UserReservationController::class);
 
+Route::get("/notification",ViewUserNotificationController::class);
 
 Route::group(['prefix' => 'company' ],function (){
 
@@ -68,7 +70,7 @@ Route::post("/follow",CompanyFollowController::class);
 
 Route::post("/recomanded",CompanyRecommendedController::class);
 
-    
+
     });  
     
 });

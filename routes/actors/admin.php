@@ -25,14 +25,6 @@ use App\Http\Controllers\AdminControllers\PullmanTypeManagement\AddPullmanTypeCo
 */
 
 
-Route::post('login', function( LoginByEmailRequest $request){
-
-    $result = (new AdminLoginController)->__invoke( $request);
-    return $result  ;
-
-});
-
-
  Route::post('signup',RegisterAdminController::class);
 
 

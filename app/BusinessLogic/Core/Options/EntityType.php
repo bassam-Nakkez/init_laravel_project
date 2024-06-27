@@ -22,9 +22,8 @@ enum EntityType : String {
     case Subscribe = 'subscribe';
     case Auth = 'auth';
     case Passenger = 'passenger';
+    case User_Notification = 'user-notification';
     case EmployeeTravel = 'employeeTravel';
-
-
 }
 
 

@@ -12,5 +12,5 @@ interface UpdateRepositoryInterface {
 
         public function updateByConditions(array $conditions , $newData);
 
-        
+        public function updateAllRecords($new_data ) ;
 }

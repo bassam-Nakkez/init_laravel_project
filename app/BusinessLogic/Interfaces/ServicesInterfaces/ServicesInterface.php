@@ -21,4 +21,8 @@ interface ServicesInterface {
 
     //Sql Services
     public function SqlServices (): SqlServicesInterface;
+
+   //fire event Service
+    public function FireEventService (): FireEventServiceInterface;
+
 }

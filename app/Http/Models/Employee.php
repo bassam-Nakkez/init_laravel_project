@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\BusinessLogic\Interfaces\EntityInterfaces\EmployeeEntity;
 use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
+use App\BusinessLogic\Core\Options\Gender;
 
 class Employee extends Authenticatable implements EmployeeEntity
 {
@@ -109,7 +110,7 @@ class Employee extends Authenticatable implements EmployeeEntity
 
     public function setGendor($gendor) : void {
 
-        if($gendor == GenderEnum::female->value || $gendor == GenderEnum::male->value){
+        if($gendor == Gender::female->value || $gendor == Gender::male->value){
             $this->gendor = $gendor;
         }
         else  {

@@ -1,5 +1,5 @@
 <?php
-namespace App\BusinessLogic\UseCases\UserActor\GetTravelMatrixUseCase\logic;
+namespace App\BusinessLogic\UseCases\CompanyActor\GetTravelMatrixUseCase\logic;
 
 
 class GetMatrixAlogrithm {

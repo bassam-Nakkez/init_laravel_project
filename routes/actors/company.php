@@ -46,6 +46,10 @@ Route::post('login',CompanyLoginController::class);
 
 Route::middleware('changeHeaderName','auth:other')->group(function () {
 
+    Route::get('test',function (){
+        return response()->json('hi from server'); 
+    });
+
 
  //---------------------- Employees Management -----------------------
 
@@ -66,9 +70,9 @@ Route::prefix('travel')->group(function () {
     Route::get('view',ViewTravelsController::class);
     Route::get('GetTravelsByFilters',GetTravelsByFiltersControllers::class);
 
-    
 
-    
+
+
 
 });
 

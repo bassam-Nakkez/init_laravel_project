@@ -21,6 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->foreignId('authId')->references('authId')->on('entity_auth_information')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('birthDay')->nullable();
             $table->text('Image')->nullable();
+            $table->integer('type')->max(1)->default(1);
             $table->foreignId('companyId')->references('companyId')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

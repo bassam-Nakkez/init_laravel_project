@@ -18,6 +18,13 @@ class UpdateRepository implements UpdateRepositoryInterface
         return  $this->model->find($id)->update($newData);
     }
 
+    
+    public function updateAllRecords($new_data ) {
+        return  $this->model->update($new_data );;
+    }
+
+
+    // update by any condition
     public function updateByConditions(array $conditions , $newData){
         $query =  $this->model::where(array_pop($conditions));
         foreach($conditions as $condition) $query->orWhere($condition);

@@ -1,14 +1,14 @@
 <?php
 namespace App\BusinessLogic\UseCases\CompanyActor\GetTravelMatrixUseCase;
 
-
 use App\BusinessLogic\Interfaces\Result;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Core\InternalInterface\UseCase;
 use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
 use App\BusinessLogic\Interfaces\PresentersInterfaces\PresenterInterface;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
-use App\BusinessLogic\UseCases\UserActor\GetTravelMatrixUseCase\logic\GetMatrixAlogrithm;
+use App\BusinessLogic\UseCases\CompanyActor\GetTravelMatrixUseCase\logic\GetMatrixAlogrithm;
+
 
 class GetTravelMatrixWebLogic implements UseCase {
 
@@ -31,19 +31,19 @@ class GetTravelMatrixWebLogic implements UseCase {
 
         $company = $travel->company;
 
-        if($company->isSeparateGender)
-        {
+        // if($company->isSeparateGender)
+        // {
 
             $seatNumbers = json_decode($travel->seatNumbers);
-            
+
             $matrix = GetMatrixAlogrithm::getMatrixAlogrithm($seatNumbers);
 
             return $this->output->sendSuccess((new GetTravelMatrixWebOutput($matrix))->getOutputAsArray() , 'Success');
-        }
-        else
-        {
-            return $this->output->sendSuccess(json_decode($travel->seatNumbers) , 'Success');
-        }
+        // }
+        // else
+        // {
+        //     return $this->output->sendSuccess(json_decode($travel->seatNumbers) , 'Success');
+        // }
 
             return $this->output->sendFailed(null,ErrorMessage::$filedGetTravelMatrix);
 

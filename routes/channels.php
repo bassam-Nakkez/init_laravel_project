@@ -20,11 +20,11 @@ Broadcast::channel('chat.{id}', function ($user, $id) {
    // return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('Share_location_Private_Channel', ShareLocationChannel::class);
+Broadcast::channel('Private-Share-location', ShareLocationChannel::class);
 
 
 //Share_location_Private_Channel
 
-// Broadcast::channel('Share_location_Private_Channel', function () {
+// Broadcast::channel('Private-Share-location.{id}', function ($driver , $id) {
 //     return true;
 // });
