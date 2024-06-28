@@ -27,19 +27,27 @@ class GetDriverTravelLogic implements UseCase {
 
         $this->repository->buildRepositoryModel(EntityType::EmployeeTravel , []);
 
-        $condation = [
+        $conditions = [
             "employeeId" => $this->input->getCompanyId(),
             "date" => $this->input->getDate(),
 
         ];
-
+        $columns = [
+            "from",
+            "to",
+            'travelDate',
+            'timeToLeave',
+            "price",
+            "isVIP",
+            'travelId',
+        ];
         // Get Travel from dataBase
-        $employeeTravels = $this->repository->readRepository()->getDriverTravel($condation);
+        $employeeTravels = $this->repository->readRepository()->getDriverTravel($columns,$conditions);
 
 
         if($employeeTravels == null )
         return $this->output->sendFailed(null , ErrorMessage::$NoSearchResult);
 
-        return $this->output->sendSuccess((new GetDriverTravelOutput($employeeTravels->travels))->getDataAsObject() , 'Success');
+        return $this->output->sendSuccess((new GetDriverTravelOutput($employeeTravels))->getDataAsObject() , 'Success');
         }
 }

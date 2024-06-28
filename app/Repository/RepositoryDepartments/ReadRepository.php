@@ -155,8 +155,8 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
     public function getCompanyTravel($data){
         return $this->model->where('travelDate',">=",$data['date'])->where("companyId","=",$data['companyId'])->with('company')->get();
     }
-     
-    // View travels in Company 
+
+// View travels in Company
     public function getTravelsByFiltersWithExpired(
         $selectFromTravel  ,$conditionsValues , $expired )
         {
@@ -167,7 +167,7 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
             $now = Carbon::now();
 
 
-            if (($expired && $today->gt($conditionsValues['travelDate'])) || ( !$expired && $today->lt($conditionsValues['travelDate']) ) ) 
+            if (($expired && $today->gt($conditionsValues['travelDate'])) || ( !$expired && $today->lt($conditionsValues['travelDate']) ) )
             {
                 $query->whereDate('travelDate',$conditionsValues['travelDate']);
             }
@@ -201,10 +201,16 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
         return $query->get();
         }
 
-    public function getDriverTravel($data){
-        return $this->model->where("employeeId","=",$data['employeeId'])->with('travels',function ($q) use($data) {
-            $q->where('travelDate',"<=",$data['date'])->get();
-        })->get();
+
+    public function getDriverTravel( $columns , $data){
+
+        return $this->model->select('employeeId', 'travelId')
+    ->where('employeeId', '=', $data['employeeId'])
+    ->with(['travel' => function ($q) use ($data , $columns ) {
+        $q->where('travelDate', '<=', $data['date'])->with('company'); 
+    }])
+    ->get();
+
     }
-    
+
 }

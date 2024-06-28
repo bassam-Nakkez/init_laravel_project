@@ -4,12 +4,11 @@ namespace App\Http\Models;
 use Exception;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use App\BusinessLogic\Core\Options\GenderEnum;
+use App\BusinessLogic\Core\Options\Gender;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\BusinessLogic\Interfaces\EntityInterfaces\EmployeeEntity;
 use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
-use App\BusinessLogic\Core\Options\Gender;
 
 class Employee extends Authenticatable implements EmployeeEntity
 {
@@ -28,14 +27,15 @@ class Employee extends Authenticatable implements EmployeeEntity
     protected $fillable = [
         'firstName',
         'lastName',
-        'email',
+      //  'email',
         'authId',
         // 'phoneNumber',
         'gendor',
         'image',
         'birthDay',
         'password',
-        'companyId'
+        'companyId',
+        'type',
     ];
 
     /**

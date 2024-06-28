@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyControllers\AddEmployeeController;
 use App\Http\Controllers\CompanyControllers\CompanyLoginController;
-use App\Http\Controllers\CompanyControllers\CreateProgramController;
 use App\Http\Controllers\UserControllers\ShowTravelDetailsControllers;
 use App\Http\Controllers\CompanyControllers\PostsManagement\ViewPostsController;
 use App\Http\Controllers\CompanyControllers\PostsManagement\CreatePostController;
@@ -59,9 +58,9 @@ Route::middleware('changeHeaderName','auth:other')->group(function () {
 
 //---------------------- Programs Management -----------------------
 
- Route::prefix('program')->group(function () {
-    Route::post('create',CreateProgramController::class);
-});
+//  Route::prefix('program')->group(function () {
+//     Route::post('create',CreateProgramController::class);
+// });
 
 //---------------------- Travels Management -----------------------
 

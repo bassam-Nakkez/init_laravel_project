@@ -11,16 +11,17 @@ use App\Http\Models\Series;
 use App\Http\Models\Travel;
 use App\Http\Models\Company;
 use App\Http\Models\Feature;
+use App\Http\Models\Program;
 use App\Http\Models\Station;
 use App\Http\Models\Employee;
 use App\Http\Models\Passenger;
 use App\Http\Models\Recommand;
 use App\Http\Models\Subscribe;
 use App\Http\Models\Reservation;
-use App\Http\Models\UserNotification;
 use App\Http\Models\TravelStation;
 use App\Http\Models\TravelFeatures;
 use App\Http\Models\EmployeeTravail;
+use App\Http\Models\UserNotification;
 use App\Http\Models\PullmanDescription;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Interfaces\EntityInterfaces\BaseEntity;
@@ -55,7 +56,8 @@ class FactoryModel
             'auth'                  =>(new Role($data)),
             'employeeTravel'        =>(new EmployeeTravail($data)),
             'passenger'             =>(new Passenger($data)),
-            'user-notification'     =>(new UserNotification($data))
+            'user-notification'     =>(new UserNotification($data)),
+            'program'               =>(new Program($data)),
         ];
 
         return $model[$type->value];

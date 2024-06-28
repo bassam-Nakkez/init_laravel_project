@@ -22,14 +22,15 @@ class EmployeeTravail extends Authenticatable implements BaseEntity
         "travelId"
     ];
 
+
     /**
-     * Get all of the travels for the EmployeeTravail
+     * Get the user associated with the EmployeeTravail
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function travels()
+    public function travel()
     {
-        return $this->hasMany(Travel::class, 'travelId', 'travelId');
+        return $this->hasOne(Travel::class, 'travelId', 'travelId');
     }
 
 }

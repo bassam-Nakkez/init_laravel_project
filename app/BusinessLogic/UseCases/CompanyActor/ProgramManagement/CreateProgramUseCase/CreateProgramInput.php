@@ -1,6 +1,6 @@
 <?php
 
-namespace App\BusinessLogic\UseCases\CompanyActor\CreateProgramUseCase;
+namespace App\BusinessLogic\UseCases\CompanyActor\ProgramManagement\CreateProgramUseCase;
 
 use App\BusinessLogic\Core\InternalInterface\RequestModel;
 

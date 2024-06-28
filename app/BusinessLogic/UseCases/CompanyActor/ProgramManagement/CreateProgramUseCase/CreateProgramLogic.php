@@ -1,6 +1,6 @@
 <?php
+namespace App\BusinessLogic\UseCases\CompanyActor\ProgramManagement\CreateProgramUseCase;
 
-namespace App\BusinessLogic\UseCases\CompanyActor\CreateProgramUseCase;
 
 use App\BusinessLogic\Interfaces\Result;
 use App\BusinessLogic\Core\InternalInterface\UseCase;
