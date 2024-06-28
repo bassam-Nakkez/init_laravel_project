@@ -204,13 +204,15 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
 
     public function getDriverTravel( $columns , $data){
 
-        return $this->model->select('employeeId', 'travelId')
-    ->where('employeeId', '=', $data['employeeId'])
-    ->with(['travel' => function ($q) use ($data , $columns ) {
-        $q->where('travelDate', '<=', $data['date'])->with('company'); 
-    }])
-    ->get();
-
+       return $this->model->where('employeeId', '=', $data['employeeId'])
+        ->with(['travel' => function ($q) use ($data, $columns) {
+            $q->where('travelDate', '<=', $data['date'])
+             // ->select($columns)
+              ->with(['company' => function ($q) {
+                $q->select('companyId','name' ,'logo'); 
+            }]);
+        }]) 
+        ->get()
+        ->pluck('travel');
     }
-
 }
