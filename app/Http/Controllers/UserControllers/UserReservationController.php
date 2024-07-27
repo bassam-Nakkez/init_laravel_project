@@ -8,6 +8,7 @@ use App\Adapters\presenters\JsonResponsePresenter;
 use App\Http\Requests\UserRequests\UserReservationRequest;
 use App\BusinessLogic\UseCases\UserActor\UserReservationUseCase\UserReservationInput;
 use App\BusinessLogic\UseCases\UserActor\UserReservationUseCase\UserReservationLogic;
+use App\Services\Services;
 
 class UserReservationController extends Controller
 {
@@ -26,6 +27,7 @@ class UserReservationController extends Controller
             new BaseRepository ,
             new BaseRepository ,
             new JsonResponsePresenter,
+            new Services
             ),
 
         //------------------Non Functional Registered--------------------------------

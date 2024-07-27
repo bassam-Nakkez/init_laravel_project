@@ -16,5 +16,8 @@ interface DateServicesInterface {
 // get count days between tow date
   public function getDaysBetween($data1 , $data2 ,  $format ='Y-m-d' );
 
+  public function getNextDay($date, $format = 'Y-m-d');
+
+
 
 }

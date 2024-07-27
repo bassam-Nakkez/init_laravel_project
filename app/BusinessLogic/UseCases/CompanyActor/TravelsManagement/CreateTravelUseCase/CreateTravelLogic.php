@@ -42,19 +42,19 @@ class CreateTravelLogic implements UseCase {
         $travelInformation['day'] = $this->service->DateServices()->getDayName($this->input->getDate() , 'Y-m-d');
 
        // $this->service->SqlServices()->startTransaction(); // begin transaction..
-        $result =$this->repository->createRepository()->create($travelInformation);
+        $travel =$this->repository->createRepository()->create($travelInformation);
         
         
-        if($result == null )
+        if($travel == null )
         return $this->output->sendFailed(null , ErrorMessage::$ConnectionProblem);
 
         // add features
         if($this->input->getFeatures()!= null){
             $values = array();
             foreach($this->input->getFeatures() as $featureId)
-            array_push($values , ['travelId' => $result->travelId , 'featureId' =>$featureId]);
+            array_push($values , ['travelId' => $travel->travelId , 'featureId' =>$featureId]);
             $this->repository->buildRepositoryModel(EntityType::TravelFeature ,[]);
-            $result =$this->repository->createRepository()->insert($values);
+           $this->repository->createRepository()->insert($values);
         }
         
         // add Stations
@@ -65,15 +65,15 @@ class CreateTravelLogic implements UseCase {
         if( $this->input->getStations()!= null){
             $values = array();
             foreach($this->input->getStations() as $stationId)
-            array_push($values , ['travelId' => $result->travelId , 'stationId' =>$stationId]);
+            array_push($values , ['travelId' => $travel->travelId , 'stationId' =>$stationId]);
             $this->repository->buildRepositoryModel(EntityType::TravelStation ,[]);
-            $result =$this->repository->createRepository()->insert($values);
+            $this->repository->createRepository()->insert($values);
         }
 
         
 
       //  $this->service->SqlServices()->commitTransaction(); // commit transaction..
-        return $this->output->sendSuccess((new CreateTravelOutput($result))->getOutputAsArray() , SuccessMessage::$addedSuccessfully);
+        return $this->output->sendSuccess((new CreateTravelOutput($travel))->getDataAsObject() , SuccessMessage::$addedSuccessfully);
     }
 }
     

@@ -6,7 +6,7 @@ use App\Http\Models\Station;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\ReadRepositoryInterface;
 
 class ReadRepository implements ReadRepositoryInterface
- {
+{
 
     public function __construct(private $model){}
 
@@ -124,7 +124,7 @@ class ReadRepository implements ReadRepositoryInterface
     }
 
     public function getRecordsByConditions( $columns , $conditions) {
-        $records = $this->model::select( $columns )->where($conditions)->get();
+        $records = $this->model::select( $columns )->where($conditions)->orderBy('notificationId','desc')->get();
         return $records? $records : null;
 }
 
@@ -166,7 +166,7 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
             $today = Carbon::today();
             $now = Carbon::now();
 
-
+          
             if (($expired && $today->gt($conditionsValues['travelDate'])) || ( !$expired && $today->lt($conditionsValues['travelDate']) ) )
             {
                 $query->whereDate('travelDate',$conditionsValues['travelDate']);
@@ -181,6 +181,7 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
                 $query->whereDate('travelDate',$conditionsValues['travelDate'])
                 ->where('timeToLeave', '<',  $now );
             }
+        
 
 
             if(isset($conditionsValues['isVIP'])) $query->where('isVIP',$conditionsValues['isVIP']);
@@ -202,6 +203,14 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
         }
 
 
+  
+
+            
+
+         
+        
+
+
     public function getDriverTravel( $columns , $data){
 
        return $this->model->where('employeeId', '=', $data['employeeId'])
@@ -209,10 +218,48 @@ public function getRecordsByPaginate( $columns , $conditions , $paginateNumber) 
             $q->where('travelDate', '<=', $data['date'])
              // ->select($columns)
               ->with(['company' => function ($q) {
-                $q->select('companyId','name' ,'logo'); 
+                $q->select('companyId','name' ,'logo');
             }]);
-        }]) 
+        }])
         ->get()
         ->pluck('travel');
     }
+
+    public function getStations( $columns , $companyId ){
+
+        return $this->model->where('companyId', '=', $companyId )
+         ->with('stations')
+         ->get()
+         ->pluck('stations');
+     }
+
+
+
+
+
+
+
+    public function getAllTravelsWithExpired(
+        $selectFromTravel  ,$companyId ,$travelDate , $expired )
+        {
+            $query = $this->model->select($selectFromTravel)->where('companyId', $companyId );
+
+            $today = Carbon::today();
+            $now = Carbon::now();
+
+            
+            if (!$expired  )
+            {
+                $query->whereDate('travelDate','<',$travelDate)
+                ->where('timeToLeave', '<', $now );
+            }
+            if( $expired  )
+            {
+                $query->whereDate('travelDate','>',$travelDate)
+                ->where('timeToLeave', '>', $now );
+                
+            }
+
+        return $query->get();
+        }
 }

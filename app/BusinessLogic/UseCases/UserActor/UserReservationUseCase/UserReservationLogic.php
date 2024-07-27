@@ -6,6 +6,7 @@ use App\BusinessLogic\Core\Options\Gender;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Core\InternalInterface\UseCase;
 use App\BusinessLogic\Core\Messages\ResponseMessages\ErrorMessage;
+use App\BusinessLogic\Interfaces\ServicesInterfaces\ServicesInterface;
 use App\BusinessLogic\Interfaces\PresentersInterfaces\PresenterInterface;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
 
@@ -19,6 +20,8 @@ class UserReservationLogic implements UseCase {
         private BaseRepositoryInterface $travelrepository , // for use FrameWork from business logic ---- frameWork
         private BaseRepositoryInterface $reservationrepository , // for use FrameWork from business logic ---- frameWork
         private PresenterInterface $output,
+        private ServicesInterface $service               // frameWork services
+
     ){}
 
 
@@ -61,6 +64,13 @@ class UserReservationLogic implements UseCase {
         $travel->seatNumbers = json_encode($matrix);
 
         $travel->save();
+        $data =[ 
+            'content' =>'مرحباً تم الححز الرحلة  بنجــاح الرجاء التقيد بالوعد و الحضور قبل نصف ساعة من موعد الانطلاق  ',
+            'image' => 'https://cdn-icons-png.flaticon.com/512/7041/7041760.png',
+            'time'=> date('Y-m-d'),
+         ];
+        
+        $this->service->FireEventService()->publicEvent('my-channel' ,'public-event', $data);
 
         return $this->output->sendSuccess((new UserReservationOutput(true))->getOutputAsArray() , ErrorMessage::$ReservationSuccessfully);
 

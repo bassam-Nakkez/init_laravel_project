@@ -7,7 +7,6 @@ use App\BusinessLogic\Interfaces\ServicesInterfaces\DateServicesInterface;
 class DateServices implements DateServicesInterface {
 
 
-
     // Verify Age  function
     public function verifyAge( $birthDate ,int $age) : bool{
      if( Carbon::parse($birthDate)->age > $age ) return true;
@@ -38,6 +37,16 @@ class DateServices implements DateServicesInterface {
     // get name of day from date
     public function getDayName( $date , $format = 'Y-m-d') : string {
             return Carbon::createFromFormat($format, $date)->format('l');
+    }
+
+    public function getNextDay($date, $format = 'Y-m-d')
+    {
+        
+        $carbonDate = Carbon::parse($date );
+       
+        $nextDay = $carbonDate->addDay();
+
+        return $nextDay->format($format );
     }
     
 }

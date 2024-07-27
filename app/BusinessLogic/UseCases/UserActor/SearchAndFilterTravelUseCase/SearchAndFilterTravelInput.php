@@ -2,6 +2,7 @@
 namespace App\BusinessLogic\UseCases\UserActor\SearchAndFilterTravelUseCase;
 
 use DateTime;
+use DateTimeZone;
 use App\BusinessLogic\Core\InternalInterface\RequestModel;
 
 class SearchAndFilterTravelInput implements RequestModel{
@@ -23,13 +24,15 @@ class SearchAndFilterTravelInput implements RequestModel{
 }
 
 public function setDate($date){
-   if($date != null){
-    $dateformat = new DateTime("@$date");
-    $this->date = $dateformat->format('Y-m-d');
-   }
-   else {  $this->date= date('Y-m-d');}
-
-}
+    if($date != null){
+    $dateformat = new DateTime();
+    $dateformat ->setTimestamp($date);
+    $dateformat->setTimezone(new DateTimeZone("GMT+03:00"));
+  $this->date = $dateformat->format('Y-m-d');
+    }
+    else {  $this->date= date('Y-m-d');}
+ 
+ }
 
 public function getCompanies() {
     return $this->companies;

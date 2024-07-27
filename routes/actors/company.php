@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyControllers\ViewCompanyNotificationController;
 use App\Http\Controllers\CompanyControllers\AddEmployeeController;
 use App\Http\Controllers\CompanyControllers\CompanyLoginController;
 use App\Http\Controllers\UserControllers\ShowTravelDetailsControllers;
 use App\Http\Controllers\CompanyControllers\PostsManagement\ViewPostsController;
 use App\Http\Controllers\CompanyControllers\PostsManagement\CreatePostController;
 use App\Http\Controllers\CompanyControllers\PostsManagement\DeletePostController;
-
 use App\Http\Controllers\CompanyControllers\PostsManagement\UpdatePostController;
 use App\Http\Controllers\CompanyControllers\SeriesManagement\ViewSeriesController;
 use App\Http\Controllers\CompanyControllers\SeriesManagement\CreateSeriesController;
@@ -16,13 +16,16 @@ use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\AddFea
 use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\ViewTravelsController;
 use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\CreateTravelController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\ViewFeaturesController;
+use App\Http\Controllers\CompanyControllers\ProgramManagementControllers\CreateProgramController;
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\DeleteStationController;
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\UpdateStationController;
+use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\GetAllTravelsController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\DeleteFeatureController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\UpdateFeatureController;
 use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\GetTravelsByFiltersControllers;
 use App\Http\Controllers\CompanyControllers\ReservationManagementControllers\CompanyReservationController;
 use App\Http\Controllers\CompanyControllers\ReservationManagementControllers\GetTravelMatrixWebController;
+use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\GetTravelsSelectorsCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,16 +61,18 @@ Route::middleware('changeHeaderName','auth:other')->group(function () {
 
 //---------------------- Programs Management -----------------------
 
-//  Route::prefix('program')->group(function () {
-//     Route::post('create',CreateProgramController::class);
-// });
+ Route::prefix('program')->group(function () {
+    Route::post('create', CreateProgramController::class);
+});
 
 //---------------------- Travels Management -----------------------
 
 Route::prefix('travel')->group(function () {
     Route::post('create',CreateTravelController::class);
     Route::get('view',ViewTravelsController::class);
-    Route::get('GetTravelsByFilters',GetTravelsByFiltersControllers::class);
+    Route::post('get/travels/by/filters',GetTravelsByFiltersControllers::class);
+    Route::get(   'get/all' , GetAllTravelsController::class);
+    Route::get(   'get/selectors' , GetTravelsSelectorsCompanyController::class);
 
 
 
@@ -125,5 +130,7 @@ Route::prefix('get')->group(function () {
     Route::get('travel/matrix',GetTravelMatrixWebController::class);
 
 });
+
+    Route::get("/notification",ViewCompanyNotificationController::class);
 
 });

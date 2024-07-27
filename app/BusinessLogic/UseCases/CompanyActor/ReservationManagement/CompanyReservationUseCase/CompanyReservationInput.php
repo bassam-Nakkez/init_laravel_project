@@ -2,6 +2,7 @@
 namespace App\BusinessLogic\UseCases\CompanyActor\ReservationManagement\CompanyReservationUseCase;
 
 
+use DateTime;
 use App\BusinessLogic\Core\InternalInterface\RequestModel;
 
 class CompanyReservationInput implements RequestModel
@@ -29,14 +30,19 @@ class CompanyReservationInput implements RequestModel
         $this->firstName = $data['firstName'];
         $this->lastName = $data['lastName'];
         $this->phoneNumber = $data['phoneNumber'];
-        $this->gender = $data['gender'];
+      //  $this->gender = $data['gender'];
         $this->personalId = $data['personalId'];
-        $this->birthDay = $data['birthDay'];
+        $this->setDate($data['birthDay']);
 
     }
 
-
-    public function getMaleSeats() : Array {
+    public function setDate($date){
+       
+         $dateformat = new DateTime("@$date");
+         $this->birthDay =  $dateformat->format('Y-m-d');
+     }
+     
+     public function getMaleSeats() : Array {
         return $this->selectedMaleSeats;
     }
 
@@ -80,7 +86,7 @@ class CompanyReservationInput implements RequestModel
             "firstName" => $this->firstName,
             "lastName" => $this->lastName,
             "phoneNumber" => $this->phoneNumber,
-            "gender" => $this->gender,
+           // "gender" => $this->gender,
             "birthDay" => $this->birthDay,
             "personalId" => $this->personalId,
         ];

@@ -27,7 +27,7 @@ class AddCompanyLogic implements UseCase {
     // execute create entity service
     public function execute(): Result{
     
-        
+    
     
 
     $this->input->setPassword( $this->service->hashData($this->input->getPassword()));
@@ -63,6 +63,25 @@ class AddCompanyLogic implements UseCase {
     } 
 
      $this->service->SqlServices()->commitTransaction();
+
+
+   
+    //insert to dataBase
+    
+    
+    $data =[
+        'userId'=>28 , 
+        'content' =>'تم اضافة شركة جدية لتطبيق بــولمـانــ قم بـزيارة صحفة الشركة للاطلاع على جديدها',
+        'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaLAMMKQn8XR8r4DN0SIoTdNvgsQX_3tP-_0kKl67Q39MYEwELGJHjWvodk3rvL_tmQWY&usqp=CAU',
+        'time'=> date('Y-m-d'),
+     ];
+
+     $this->service->FireEventService()->publicEvent('my-channel' ,'public-event', $data);
+     
+     $data['userId'] = 28;        
+     //Create Model
+     $this->repository->buildRepositoryModel(EntityType::User_Notification , []);
+     $user  = $this->repository->createRepository()->create( $data) ;
         //return response  
      return $this->output->sendSuccess(
         (new AddCompanyOutput($company))->getDataAsObject(),

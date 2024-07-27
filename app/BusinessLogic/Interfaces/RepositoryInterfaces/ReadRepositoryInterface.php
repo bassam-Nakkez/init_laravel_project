@@ -29,6 +29,7 @@ interface ReadRepositoryInterface{
         $selectFromTravel  , $selectFromCompany ,$conditionsValues , $companies =[] ,$orderByColumns );
 
     public function getModelByWhere($condition);
+    public function getStations( $columns , $companyId );
 
     public function getModelsByWhere($condition) ;
 
@@ -43,5 +44,9 @@ interface ReadRepositoryInterface{
     public function getRecordsByPaginate( $columns , $conditions , $paginateNumber);
     public function getTravelsByFiltersWithExpired( $selectFromTravel  ,$conditionsValues , $expired );
     public function getDriverTravel($columns ,$data);
+
+    
+    public function getAllTravelsWithExpired(
+        $selectFromTravel  ,$companyId ,$travelDate , $expired );
     
 }

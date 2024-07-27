@@ -1,22 +1,21 @@
 <?php
-namespace App\BusinessLogic\UseCases\CompanyActor\ProgramManagement\CreateProgramUseCase;
-
+namespace App\BusinessLogic\UseCases\CompanyActor\TravelsManagement\GetAllTravelsUseCase;
 
 use App\BusinessLogic\Core\InternalInterface\ResponseModel;
 
-class CreateProgramOutput implements ResponseModel {
+class GetAllTravelsOutput implements ResponseModel {
+
 
     public function __construct( private $data)
     {}
 
-    public function getDataAsObject()  { 
+
+    public function getDataAsObject()  {
          return $this->data;
     }
-
-
     public function getOutputAsArray() : array{
         return [
-          
+
         ];
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompanyNotificationsTable extends Migration
+class CreateCompanyChannelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateCompanyNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_notifications', function (Blueprint $table) {
-            $table->id('notificationId');
+        Schema::create('company_channels', function (Blueprint $table) {
+            $table->id('channelId');
+            $table->string('name');
             $table->foreignId("companyId")->references("companyId")->on("companies")->cascadeOnDelete();
-            $table->string('message');
-            $table->string('details');
-            $table->boolean('is_read')->default(false);
-           //$table->string('time');
-            $table->text('avatar',350);
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateCompanyNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_notifications');
+        Schema::dropIfExists('company_channels');
     }
 }

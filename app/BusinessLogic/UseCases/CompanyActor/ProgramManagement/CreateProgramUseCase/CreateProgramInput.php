@@ -26,13 +26,13 @@ class CreateProgramInput implements RequestModel{
         $this->from  = $inputData['from'];
         $this->to    = $inputData['to'];
         $this->companyId = $inputData['companyId'];
-        $this->sunday    =  $inputData['sunday'];
-        $this->monday    =  $inputData['monday'];
-        $this->tuesday   =  $inputData['tuesday'];
-        $this->wednesday =  $inputData['wednesday'];
-        $this->thursday  =  $inputData['thursday'];
-        $this->friday    =  $inputData['friday'];
-        $this->saturday  =  $inputData['saturday'];
+        $this->sunday    = isset($inputData['sunday'])    ? $inputData['sunday']: null;
+        $this->monday    = isset($inputData['monday'])    ? $inputData['monday']: null;
+        $this->tuesday   = isset($inputData['tuesday'])   ? $inputData['tuesday']: null; 
+        $this->wednesday = isset($inputData['wednesday']) ? $inputData['wednesday']: null;
+        $this->thursday  = isset($inputData['thursday'])  ? $inputData['thursday']: null; 
+        $this->friday    = isset($inputData['friday'])    ? $inputData['friday']: null;
+        $this->saturday  = isset($inputData['saturday'])  ? $inputData['saturday']: null;
 
     }
 
@@ -73,14 +73,9 @@ class CreateProgramInput implements RequestModel{
     public function getEndDate (){return $this->end;}
 
 
-    public function toArray() : array
+    public function week_days():Array
     {
         return [
-            "start"     => $this->start,
-            "end"       => $this->end,
-            "from"      => $this->from,
-            "to"        => $this->to,
-            "companyId" => $this->companyId,
             "Sunday"    => $this->sunday,
             "Monday"    => $this->monday,
             "Tuesday"   => $this->tuesday,
@@ -91,5 +86,24 @@ class CreateProgramInput implements RequestModel{
         ];
     }
 
+
+    public function toArray() : array
+    {
+        return [
+            "start"     => $this->start,
+            "end"       => $this->end,
+            "from"      => $this->from,
+            "to"        => $this->to,
+            "companyId" => $this->companyId,
+        ];
+    }
+
 }
 
+// "Sunday"    => $this->sunday,
+// "Monday"    => $this->monday,
+// "Tuesday"   => $this->tuesday,
+// "Wednesday" => $this->wednesday,
+// "Thursday"  => $this->thursday,
+// "Friday"    => $this->friday,
+// "Saturday"  => $this->saturday,
