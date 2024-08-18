@@ -26,16 +26,16 @@ class TravelFactory extends Factory
         $day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
         $number = $this->faker->numberBetween(0,1);
         $number2 = 0;
-        if($number == 0 ) 
+        if($number == 0 )
         {
-            $number2 =1; 
+            $number2 =1;
         }
-        
+
         return [
             'programId'=>Program::inRandomOrder()->first()->programId,
             "from"=> $cities[ $number],
             "to"=>$cities[$number2],
-            'travelDate'=>$this->faker->dateTimeBetween('2024-6-20' ,'2024-7-10')->format('Y-m-d') ,
+            'travelDate'=>$this->faker->dateTimeBetween('2024-8-1' ,'2024-8-26')->format('Y-m-d') ,
             'timeToLeave'=>$this->faker->time(),
             "price"=>$this->faker->numberBetween(40000,90000 ),
             "numOfSeatsBooking"=>$this->faker->numberBetween(0,24),
@@ -50,7 +50,7 @@ class TravelFactory extends Factory
             "pullmanDescriptionId"=>PullmanDescription::inRandomOrder()->first()->pullmanDescriptionId,
             "companyId"=>Company::inRandomOrder()->first()->companyId,
             "seatNumbers"=>json_encode(array_fill(0,47,0)),
-            
+
         ];
     }
 }

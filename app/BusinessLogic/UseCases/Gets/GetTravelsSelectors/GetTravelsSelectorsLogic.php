@@ -16,11 +16,11 @@ class GetTravelsSelectorsLogic implements UseCase
         //---------------------------------------------------------------------------------------
         private GetTravelsSelectorsInput $input,  /*| Pass Request To Service*/
         //---------------------------------------------------------------------------------------
-        private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork 
+        private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork
         private PresenterInterface $output,          // for present output to Views ---- Views
         private ServicesInterface $service           // frameWork services
     ){}
-    
+
      public function execute() : Result {
     // ---------------- get series ----------------
     $this->repository->buildRepositoryModel(EntityType::Series, []);
@@ -57,7 +57,8 @@ class GetTravelsSelectorsLogic implements UseCase
     $pullmanOptions = $this->repository->readRepository()
         ->getAllBySelected(['pullmanDescriptionId', 'type']);
 
-    // Structure data as expected by frontend
+
+
     $data = [
         'seriesOptions' => $seriesOptions,
         'featureOptions' => $featureOptions,

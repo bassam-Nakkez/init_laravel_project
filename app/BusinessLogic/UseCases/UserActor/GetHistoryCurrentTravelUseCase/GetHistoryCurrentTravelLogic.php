@@ -22,7 +22,7 @@ class GetHistoryCurrentTravelLogic implements UseCase {
     public function execute() : Result {
 
 
-        $this->repository->buildRepositoryModel(EntityType::Travel , []);
+        $this->repository->buildRepositoryModel(EntityType::Reservation , []);
 
         $attri = [
             "userId"=>$this->input->getUserId(),
@@ -32,7 +32,7 @@ class GetHistoryCurrentTravelLogic implements UseCase {
         // Get Travel from dataBase
         $currenttravels = $this->repository->readRepository()->getUserTravel($attri);
 
-        $this->repository->buildRepositoryModel(EntityType::Travel , []);
+        $this->repository->buildRepositoryModel(EntityType::Reservation , []);
         $attri = [
             "userId"=>$this->input->getUserId(),
             "operation" => "<",
