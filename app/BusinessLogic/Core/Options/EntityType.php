@@ -28,6 +28,9 @@ enum EntityType : String {
     case Company_Notification = 'company-notification';
     case UserChannel = 'userChannel' ;
     case CompanyChannel = 'companyChannel';
+    case TravelFollow = 'travelFollow';
+
+    
 
 
 }

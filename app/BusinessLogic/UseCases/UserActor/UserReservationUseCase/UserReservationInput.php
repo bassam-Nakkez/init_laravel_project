@@ -9,6 +9,7 @@ class UserReservationInput implements RequestModel
 
     private  $travelId;
     private  $userId;
+    private  $userGender;
     private  $station;
     private  $matrix ;
 
@@ -16,6 +17,7 @@ class UserReservationInput implements RequestModel
     {
         $this->travelId = $data['travelId'];
         $this->userId = $data['userId'];
+        $this->userGender = $data['gender'];
         $this->station = $data['station'];
         $this->matrix = $data['matrix'];
     }
@@ -23,6 +25,11 @@ class UserReservationInput implements RequestModel
     public function getTravelId()
     {
         return $this->travelId;
+    }
+
+    public function getUserGender()
+    {
+        return  $this->userGender ;
     }
 
     public function getUserId()

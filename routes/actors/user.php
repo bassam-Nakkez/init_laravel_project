@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserControllers\UserLoginController;
 use App\Http\Controllers\UserControllers\ShowCompanyController;
 use App\Http\Controllers\UserControllers\RegisterUserController;
+use App\Http\Controllers\UserControllers\TravelFollowController;
 use App\Http\Controllers\UserControllers\CompanyFollowController;
 use App\Http\Controllers\UserControllers\GetComanyTravelController;
 use App\Http\Controllers\UserControllers\GetTravelMatrixController;
+use App\Http\Controllers\UserControllers\GetUserChannelsController;
 use App\Http\Controllers\UserControllers\UserReservationController;
 use App\Http\Controllers\UserControllers\ShowCompanyPostsController;
 use App\Http\Controllers\UserControllers\CompanyRecommendedController;
@@ -54,7 +56,7 @@ Route::get("company/get/travel",GetComanyTravelController::class);
 
 Route::middleware('changeHeaderName','auth:user')->group(function () {
 
-
+Route::post("/travel/follow",TravelFollowController::class);
     
 Route::get("get/travel",GetHistoryCurrentTravelController::class);
 
@@ -63,6 +65,8 @@ Route::get("travel/getMatrix",GetTravelMatrixController::class);
 Route::post("reservation",UserReservationController::class);
 
 Route::get("/notification",ViewUserNotificationController::class);
+Route::get("/myChannels",GetUserChannelsController::class);
+
 
 Route::group(['prefix' => 'company' ],function (){
 

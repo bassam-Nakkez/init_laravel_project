@@ -8,7 +8,6 @@ use App\BusinessLogic\Interfaces\EntityInterfaces\TravelFeatureEntity;
 
 class TravelFeatures extends Model implements TravelFeatureEntity
 {
-    use HasFactory;
 
     use HasFactory;
     protected $table = 'travel_features';

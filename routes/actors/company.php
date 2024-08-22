@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CompanyControllers\ViewCompanyNotificationController;
 use App\Http\Controllers\CompanyControllers\AddEmployeeController;
 use App\Http\Controllers\CompanyControllers\CompanyLoginController;
 use App\Http\Controllers\UserControllers\ShowTravelDetailsControllers;
+use App\Http\Controllers\CompanyControllers\ViewCompanyNotificationController;
 use App\Http\Controllers\CompanyControllers\PostsManagement\ViewPostsController;
 use App\Http\Controllers\CompanyControllers\PostsManagement\CreatePostController;
 use App\Http\Controllers\CompanyControllers\PostsManagement\DeletePostController;
@@ -14,6 +14,7 @@ use App\Http\Controllers\CompanyControllers\SeriesManagement\CreateSeriesControl
 use App\Http\Controllers\CompanyControllers\StationManagementControllers\AddStationController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\AddFeatureController;
 use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\ViewTravelsController;
+use App\Http\Controllers\CompanyControllers\ProgramManagementControllers\ViewProgramsController;
 use App\Http\Controllers\CompanyControllers\TravelsManagementControllers\CreateTravelController;
 use App\Http\Controllers\CompanyControllers\FeaturesManagementControllers\ViewFeaturesController;
 use App\Http\Controllers\CompanyControllers\ProgramManagementControllers\CreateProgramController;
@@ -63,6 +64,7 @@ Route::middleware('changeHeaderName','auth:other')->group(function () {
 
  Route::prefix('program')->group(function () {
     Route::post('create', CreateProgramController::class);
+    Route::get('view', ViewProgramsController::class);
 });
 
 //---------------------- Travels Management -----------------------
@@ -73,11 +75,7 @@ Route::prefix('travel')->group(function () {
     Route::post('get/travels/by/filters',GetTravelsByFiltersControllers::class);
     Route::get(   'get/all' , GetAllTravelsController::class);
     Route::get(   'get/selectors' , GetTravelsSelectorsCompanyController::class);
-
-
-
-
-
+    
 });
 
 //---------------------- Stations Management -----------------------

@@ -16,6 +16,7 @@ class CreateUserChannelsTable extends Migration
         Schema::create('user_channels', function (Blueprint $table) {
             $table->id('channelId');
             $table->string('name');
+            $table->string('event')->nullable();
             $table->foreignId("userId")->references("userId")->on("users")->cascadeOnDelete();
 
             $table->timestamps();

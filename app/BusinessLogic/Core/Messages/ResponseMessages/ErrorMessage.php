@@ -25,13 +25,15 @@ class ErrorMessage
     static $ExistsFeature = "عذراً الميزة موجودة مسبقاً";
     static $NotExistItem = "العنصر غير موجود";
     static $ExistsPullmanType = "عذراً نوع البولمان موجود مسبقاً";
-    static $followFiled = "عملية متابعة الشرمة فشلت ";
-    static $unfollowFiled = "عملية الغاء متابعة الشرمة فشلت ";
+    static $followFiled = " فشلت عمليةالمتــاعة ";
+    static $unfollowFiled = "عملية الغاء متابعة فشلت ";
     static $filedGetTravelMatrix = " يوجد خطأ الرجاء اعادة المحاولة  ";
     static $someThingWentWrong = "حدث خطأ ما ";
     static $AlreadyReservation = "تم حجز المقعد مسبقا الرجاء اعادة المحاولة";
     static $WrongReservation = "يوجد خطأ في اضافة الحجز الرجاء اعادة المحاولة";
     static $ReservationSuccessfully = 'تم الـحـجـز بـنجـاح';
+    static $unSuccessFowllow = 'تم الغاء المتابعة بنجـاح';
+    static $SuccessFowllow = "تمت المتابعة بنجــاح";
 
 
 

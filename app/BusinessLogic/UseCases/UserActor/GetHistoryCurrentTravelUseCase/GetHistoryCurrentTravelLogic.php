@@ -29,8 +29,24 @@ class GetHistoryCurrentTravelLogic implements UseCase {
             "operation" => ">=",
             "travelDate" => $this->input->getDate()
         ];
+        
         // Get Travel from dataBase
         $currenttravels = $this->repository->readRepository()->getUserTravel($attri);
+
+        $result = array();
+        foreach( $currenttravels as  $reservation){
+            
+            if ( $reservation['travel'] !=null)
+            {
+                $travel =  $reservation['travel'];
+                $travel['station'] = $reservation['station'];
+                $travel['numberOfTraveller'] = $reservation['seteIndex'] ;
+                array_push($result,$travel);
+            }
+            
+           
+        }
+      
 
         $this->repository->buildRepositoryModel(EntityType::Reservation , []);
         $attri = [
@@ -40,7 +56,25 @@ class GetHistoryCurrentTravelLogic implements UseCase {
         ];
         $historytravels = $this->repository->readRepository()->getUserTravel($attri);
 
+        
+       
+        $historyResult = array();
+        foreach( $historytravels as  $reservation){
+            
+            if ( $reservation['travel'] !=null)
+            {
+               
 
-        return $this->output->sendSuccess((new GetHistoryCurrentTravelOutput($currenttravels,$historytravels))->getOutputAsArray() , 'Success');
+                $travel =  $reservation['travel'];
+                $travel['station'] = $reservation['station'];
+                $travel['numberOfTraveller'] = $reservation['seteIndex'] ;
+                array_push($historyResult,$travel);
+            }
+            
+           
+        }
+
+
+        return $this->output->sendSuccess((new GetHistoryCurrentTravelOutput($result,$historyResult))->getOutputAsArray() , 'Success');
         }
 }

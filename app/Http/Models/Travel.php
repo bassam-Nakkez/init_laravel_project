@@ -75,7 +75,10 @@ class Travel extends Model implements TravelEntity
     }
 
 
-
+    public function followers()
+    {
+        return $this->hasMany( TravelFollow::class ,'travelId','travelId' );
+    }
 
         /**
      * Get all of the features for the Travel

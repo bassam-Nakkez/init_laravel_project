@@ -2,9 +2,9 @@
 
 namespace App\Http\Models;
 
-use App\BusinessLogic\Interfaces\EntityInterfaces\BaseEntity;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\BusinessLogic\Interfaces\EntityInterfaces\BaseEntity;
 
 class Reservation extends Model implements BaseEntity
 {
@@ -19,6 +19,7 @@ class Reservation extends Model implements BaseEntity
     protected $fillable = [
         "travelId",
         "userId",
+        "companyId",
         "station",
         "seteIndex",
         "gendor"

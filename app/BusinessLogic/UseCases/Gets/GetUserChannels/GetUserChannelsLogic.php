@@ -1,5 +1,5 @@
 <?php
-namespace App\BusinessLogic\UseCases\UserActor\ViewUserNotificationUseCase;
+namespace App\BusinessLogic\UseCases\Gets\GetUserChannels;
 
 
 use App\BusinessLogic\Interfaces\Result;
@@ -10,37 +10,35 @@ use App\BusinessLogic\Interfaces\ServicesInterfaces\ServicesInterface;
 use App\BusinessLogic\Interfaces\PresentersInterfaces\PresenterInterface;
 use App\BusinessLogic\Interfaces\RepositoryInterfaces\BaseRepositoryInterface;
 
-class ViewUserNotificationLogic implements UseCase
+class GetUserChannelsLogic implements UseCase
 {
 
     public function __construct(
         //---------------------------------------------------------------------------------------
-        private ViewUserNotificationInput $input,  /*| Pass Request To Service*/
+        private GetUserChannelsInput $input,  /*| Pass Request To Service*/
         //---------------------------------------------------------------------------------------
-        private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork 
+        private BaseRepositoryInterface $repository , // for use FrameWork from business logic ---- frameWork
         private PresenterInterface $output,          // for present output to Views ---- Views
         private ServicesInterface $service           // frameWork services
     ){}
-    
-     
-    public function execute() : Result { 
-        
-   
-        $this->repository->buildRepositoryModel(EntityType::User_Notification , []);
 
-        $columns = ['content',"image","is_read" , "time"];
+
+    public function execute() : Result {
+
+
+        $this->repository->buildRepositoryModel(EntityType::UserChannel , []);
+
+        $columns = ['name',"event"];
 
             $data = $this->repository->readRepository()
-            ->getNotificationRecords( $columns , ['userId'=>$this->input->getUserId()]);
-            
+            ->getRecordsByConditions( $columns , ['userId'=>$this->input->getUserId()]);
+
             if($data == null )
             return $this->output->sendFailed(null , ErrorMessage::$someThingWentWrong);
 
 
-            $this->repository->updateRepository()->updateAllRecords(['is_read'=>true] );
 
-            return $this->output->sendSuccess( ( new ViewUserNotificationOutput( $data
-            ))->getDataAsObject() , 'get all user\'s notifications ');
+            return $this->output->sendSuccess( ( new GetUserChannelsOutput( $data
+            ))->getDataAsObject() , 'get all user\'s channels ');
     }
 }
-    

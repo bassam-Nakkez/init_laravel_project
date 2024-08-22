@@ -45,7 +45,7 @@ interface ReadRepositoryInterface{
     public function getTravelsByFiltersWithExpired( $selectFromTravel  ,$conditionsValues , $expired );
     public function getDriverTravel($columns ,$data);
 
-    
+    public function getNotificationRecords( $columns , $conditions);
     public function getAllTravelsWithExpired(
         $selectFromTravel  ,$companyId ,$travelDate , $expired );
     

@@ -48,5 +48,17 @@ class DateServices implements DateServicesInterface {
 
         return $nextDay->format($format );
     }
+
+
+    function getOneYearBefore($date , $format = 'Y-m-d'){
+        
+    $date = Carbon::parse($date);
+    
+    $oneYearBefore = $date->subYear();
+    
+    return $oneYearBefore->format($format);
+}
+
+    
     
 }

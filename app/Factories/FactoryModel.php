@@ -19,15 +19,16 @@ use App\Http\Models\Recommand;
 use App\Http\Models\Subscribe;
 use App\Http\Models\Reservation;
 use App\Http\Models\UserChannel;
+use App\Http\Models\TravelFollow;
 use App\Http\Models\TravelStation;
 use App\Http\Models\CompanyChannel;
 use App\Http\Models\TravelFeatures;
 use App\Http\Models\EmployeeTravail;
 use App\Http\Models\UserNotification;
 use App\Http\Models\PullmanDescription;
+use App\Http\Models\CompanyNotification;
 use App\BusinessLogic\Core\Options\EntityType;
 use App\BusinessLogic\Interfaces\EntityInterfaces\BaseEntity;
-use App\Http\Models\CompanyNotification;
 
 class FactoryModel
 {
@@ -64,6 +65,7 @@ class FactoryModel
             'company-notification'  =>(new CompanyNotification($data)),
             'userChannel'  =>(new UserChannel($data)),
             'companyChannel'  =>(new CompanyChannel($data)),
+            'travelFollow'  =>(new TravelFollow($data)),
 
 
             

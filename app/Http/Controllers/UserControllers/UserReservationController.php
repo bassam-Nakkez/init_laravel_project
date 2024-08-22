@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\UserControllers;
 
+use App\Services\Services;
 use App\Repository\BaseRepository;
 use App\Http\Controllers\Controller;
 use App\Adapters\presenters\JsonResponsePresenter;
 use App\Http\Requests\UserRequests\UserReservationRequest;
 use App\BusinessLogic\UseCases\UserActor\UserReservationUseCase\UserReservationInput;
 use App\BusinessLogic\UseCases\UserActor\UserReservationUseCase\UserReservationLogic;
-use App\Services\Services;
 
 class UserReservationController extends Controller
 {
@@ -18,6 +18,9 @@ class UserReservationController extends Controller
         $data = $userReservationRequest->all();
 
         $data['userId'] = auth()->user()->userId;
+        $data['gender'] = auth()->user()->gendor;
+
+        
 
         return $this->applyAspect(
 

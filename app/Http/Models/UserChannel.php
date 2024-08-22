@@ -23,8 +23,7 @@ class UserChannel extends Model implements EntityInterfacesUserChannel
     protected $fillable = [
         'userId',
         'name',
-       
-      
+        'event',
     ];
 
 

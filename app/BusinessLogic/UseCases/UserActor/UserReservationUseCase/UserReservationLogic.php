@@ -40,18 +40,6 @@ class UserReservationLogic implements UseCase {
             if ($matrix[$value["seteIndex"]] != 0 ) {
                 return $this->output->sendFailed(null , ErrorMessage::$AlreadyReservation);
             }
-
-            $reservation = $this->reservationrepository->createRepository()->create([
-                "userId" => $this->input->getUserId(),
-                "travelId" => $this->input->getTravelId(),
-                "station" => $this->input->getStation(),
-                "seteIndex" => $value["seteIndex"],
-                "gendor" => $value["gendor"]
-            ]);
-
-            if (!$reservation) {
-                return $this->output->sendFailed(null , ErrorMessage::$WrongReservation);            }
-
             if($value["gendor"] == Gender::male->value)
             {
                 $matrix[$value["seteIndex"]] = 2;
@@ -60,6 +48,45 @@ class UserReservationLogic implements UseCase {
             $matrix[$value["seteIndex"]] = 1;
             }
         }
+
+        $this->service->sqlServices()->startTransaction();
+
+        $numOfSeatsBooking = ($travel->numOfSeatsBooking + count($this->input->getMatrix()));
+
+        ($numOfSeatsBooking == $travel->numOfSeats )? 
+        $new_data =[
+            'available'=> false,
+            'numOfSeatsBooking'=>$numOfSeatsBooking
+        ]
+        : $new_data =[
+            'numOfSeatsBooking'=>$numOfSeatsBooking
+        ];
+      
+
+
+        $this->travelrepository->updateRepository()->update(
+            $travel->travelId,
+            $new_data 
+        );
+        
+        
+        $reservation = $this->reservationrepository->createRepository()->create([
+            "userId" => $this->input->getUserId(),
+            "companyId" =>$travel->company->name,
+            "travelId" => $this->input->getTravelId(),
+            "station" => $this->input->getStation(),
+            "seteIndex" =>count($this->input->getMatrix()) ,
+            "gendor" => $this->input->getUserGender(),//$value["gendor"];
+        ]);
+
+        $this->service->sqlServices()->commitTransaction();
+
+
+        if (!$reservation) {
+            $this->service->sqlServices()->rollBackTransaction();
+            return $this->output->sendFailed(null , ErrorMessage::$WrongReservation);          
+          }
+        
 
         $travel->seatNumbers = json_encode($matrix);
 
@@ -72,6 +99,16 @@ class UserReservationLogic implements UseCase {
         
         $this->service->FireEventService()->publicEvent('my-channel' ,'public-event', $data);
 
+        $this->reservationrepository->buildRepositoryModel(EntityType::User_Notification , []);
+
+        $reservation = $this->reservationrepository->createRepository()->create([
+            'userId' => $this->input->getUserId(),
+            'content'=>$data['content'],
+            'is_read'=>false,
+            "image"=>$data['image'],
+            "time"=>$data['time'],
+        ]);
+        
         return $this->output->sendSuccess((new UserReservationOutput(true))->getOutputAsArray() , ErrorMessage::$ReservationSuccessfully);
 
     }
